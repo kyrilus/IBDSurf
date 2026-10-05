@@ -1,0 +1,10 @@
+<svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Ian Blackmore Designs</title>
+  <rect width="240" height="80" rx="40" fill="#0A0A0A"/>
+  <path d="M38 53V27H45V53H38Z" fill="#FAFAF9"/>
+  <path d="M56 53V27H67.5C75.1 27 80.8 32.4 80.8 40C80.8 47.6 75.1 53 67.5 53H56ZM63 46.8H67.1C70.9 46.8 73.6 44 73.6 40C73.6 36 70.9 33.2 67.1 33.2H63V46.8Z" fill="#FAFAF9"/>
+  <path d="M91 53V27H104.5C110 27 113.5 30 113.5 34.4C113.5 37 112.2 39 109.9 40.2C112.9 41.3 114.8 43.6 114.8 46.6C114.8 50.6 111.4 53 105.4 53H91ZM98 37.7H103.1C105.2 37.7 106.4 36.8 106.4 35.2C106.4 33.6 105.2 32.7 103.1 32.7H98V37.7ZM98 47.3H104.2C106.4 47.3 107.6 46.4 107.6 44.7C107.6 43 106.4 42.1 104.2 42.1H98V47.3Z" fill="#FAFAF9"/>
+  <path d="M131 49C146 30 164 30 179 49" stroke="#FAFAF9" stroke-width="5" stroke-linecap="round"/>
+  <path d="M145 50C153 43 161 43 169 50" stroke="#FAFAF9" stroke-width="3" stroke-linecap="round"/>
+  <text x="38" y="68" fill="#FAFAF9" font-family="Arial, Helvetica, sans-serif" font-size="8" letter-spacing="4">SURFBOARDS</text>
+</svg>
