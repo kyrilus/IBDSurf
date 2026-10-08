@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { manic } from "@/lib/fonts";
 import { BoardGrid } from "@/components/products/BoardGrid";
 import { Button } from "@/components/common/Button";
 import { getProducts } from "@/lib/shopify";
@@ -11,7 +10,7 @@ export default async function Home() {
     <div>
       <section className="relative isolate flex flex-col items-center overflow-hidden px-6 pb-20 pt-64 text-center md:pt-56 lg:px-8 lg:pb-28 lg:pt-64">
         <Image
-          src="/images/hero/surf-tool-1.png"
+          src="/images/hero/board-noses.JPG"
           alt=""
           fill
           sizes="100vw"
@@ -20,7 +19,7 @@ export default async function Home() {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-white/85 dark:bg-black/85"
+          className="absolute inset-0 -z-10 bg-white/50 dark:bg-black/50"
         />
         <Image
           src="/logos/IBD-Logo-outline-black.svg"
@@ -38,8 +37,8 @@ export default async function Home() {
           className="hidden h-auto w-48 dark:block sm:w-64 lg:w-72"
           preload
         />
-        <h1 className={`${manic.className} mt-12 text-2xl font-normal text-stone-950 dark:text-stone-50 sm:mt-16 sm:text-4xl`}>
-          IAN BlACKMORE DESIGNS
+        <h1 className="mt-12 font-[Arial] text-2xl font-normal text-stone-950 dark:text-stone-50 sm:mt-16 sm:text-4xl">
+          IAN BLACKMORE DESIGNS
         </h1>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:mt-16 sm:flex-row">
           <Button href="/surfboards">Shop Boards</Button>
@@ -49,13 +48,21 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-20 dark:bg-stone-950">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className={`${manic.className} mb-10 text-center text-[60px] font-normal text-stone-950 dark:text-stone-50`}>
+      <section className="relative isolate overflow-hidden bg-white py-20 dark:bg-stone-950">
+        <Image
+          src="/images/hero/board-rails.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none object-cover object-center"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 className="mb-10 text-center text-[60px] font-normal text-stone-950 dark:text-stone-50">
             SURFBOARDS
           </h2>
           {boards.length > 0 ? (
-            <BoardGrid boards={boards} />
+            <BoardGrid boards={boards} transparentCards />
           ) : (
             <p className="text-stone-600 dark:text-stone-400">
               No boards are available right now. Check back soon.

@@ -15,7 +15,7 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
 export function BoardDetails({ board }: BoardDetailsProps) {
   return (
     <article className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-stone-100 dark:bg-stone-900">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-transparent">
         <Image
           src={board.image}
           alt={`${board.title} surfboard`}
@@ -26,7 +26,7 @@ export function BoardDetails({ board }: BoardDetailsProps) {
         />
       </div>
 
-      <div className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm dark:border-stone-800 dark:bg-stone-950">
+      <div className="rounded-[2rem] border border-stone-200 bg-transparent p-8 shadow-sm dark:border-stone-800">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-stone-500">
           Ian Blackmore Designs
         </p>

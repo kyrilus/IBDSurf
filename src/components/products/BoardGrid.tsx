@@ -3,13 +3,14 @@ import { BoardCard } from "@/components/products/BoardCard";
 
 type BoardGridProps = {
   boards: Board[];
+  transparentCards?: boolean;
 };
 
-export function BoardGrid({ boards }: BoardGridProps) {
+export function BoardGrid({ boards, transparentCards = false }: BoardGridProps) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {boards.map((board) => (
-        <BoardCard key={board.id} board={board} />
+        <BoardCard key={board.id} board={board} transparent={transparentCards} />
       ))}
     </div>
   );

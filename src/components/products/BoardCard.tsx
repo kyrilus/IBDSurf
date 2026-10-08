@@ -4,6 +4,7 @@ import type { Board } from "@/data/boards";
 
 type BoardCardProps = {
   board: Board;
+  transparent?: boolean;
 };
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
@@ -12,9 +13,15 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
-export function BoardCard({ board }: BoardCardProps) {
+export function BoardCard({ board, transparent = false }: BoardCardProps) {
   return (
-    <article className="group overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-sm transition-transform hover:-translate-y-1 dark:border-stone-800 dark:bg-stone-950">
+    <article
+      className={`group overflow-hidden rounded-[2rem] transition-transform hover:-translate-y-1 ${
+        transparent
+          ? "bg-transparent"
+          : "border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-950"
+      }`}
+    >
       <Link href={`/surfboards/${board.handle}`} className="block">
         <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 dark:bg-stone-900">
           <Image

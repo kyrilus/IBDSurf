@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { manic } from "@/lib/fonts";
 
 const navigationItems = [
   { href: "/surfboards", label: "Boards" },
@@ -10,7 +9,7 @@ const navigationItems = [
 
 export function Navigation() {
   return (
-    <nav aria-label="Main navigation" className={`${manic.className} flex flex-wrap items-center justify-center gap-x-8 gap-y-3 lg:gap-x-10`}>
+    <nav aria-label="Main navigation" className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 lg:gap-x-10">
       {navigationItems.map((item) => (
         <Link
           key={item.href}
