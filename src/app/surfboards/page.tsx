@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BoardGrid } from "@/components/products/BoardGrid";
-import { getProducts } from "@/lib/shopify";
+import { getProducts } from "@/lib/square";
 
 export const metadata: Metadata = {
   title: "Surfboards",

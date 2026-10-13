@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { BoardGrid } from "@/components/products/BoardGrid";
 import { Button } from "@/components/common/Button";
-import { getProducts } from "@/lib/shopify";
+import { getProducts } from "@/lib/square";
 
 export default async function Home() {
   const boards = await getProducts();

@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
-const shopifyImageHostname = process.env.SHOPIFY_IMAGE_HOSTNAME;
+const squareImageHostname =
+  process.env.SQUARE_IMAGE_HOSTNAME ??
+  "items-images-production.s3.us-west-2.amazonaws.com";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -9,16 +11,14 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
-  images: shopifyImageHostname
-    ? {
-        remotePatterns: [
-          {
-            protocol: "https",
-            hostname: shopifyImageHostname,
-          },
-        ],
-      }
-    : undefined,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: squareImageHostname,
+      },
+    ],
+  },
 };
 
 export default nextConfig;

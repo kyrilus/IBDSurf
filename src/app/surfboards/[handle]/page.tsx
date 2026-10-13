@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { BoardDetails } from "@/components/products/BoardDetails";
-import { getProductByHandle, getProducts } from "@/lib/shopify";
+import { getProductByHandle, getProducts } from "@/lib/square";
 
 type SurfboardPageProps = {
   params: Promise<{
