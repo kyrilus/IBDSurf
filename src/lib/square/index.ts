@@ -17,6 +17,13 @@ const CATALOG_CACHE_SECONDS = 60;
 type SquareCatalogItem = Square.CatalogObject.Item;
 type SquareCatalogVariation = Square.CatalogObject.ItemVariation;
 
+export type SquareCheckoutLine = {
+  variationId: string;
+  quantity: number;
+};
+
+export class SquareCheckoutValidationError extends Error {}
+
 export function isSquareConfigured() {
   return Boolean(SQUARE_ACCESS_TOKEN && SQUARE_LOCATION_ID);
 }
@@ -330,4 +337,94 @@ export async function getProducts(): Promise<Board[]> {
 export async function getProductByHandle(handle: string): Promise<Board | undefined> {
   const products = await getProducts();
   return products.find((product) => product.handle === handle);
+}
+
+function getCheckoutRedirectUrl() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!siteUrl) {
+    throw new Error("Missing NEXT_PUBLIC_SITE_URL.");
+  }
+
+  return new URL("/checkout/success", siteUrl).toString();
+}
+
+export async function createSquareCheckout(lines: SquareCheckoutLine[]) {
+  if (lines.length === 0) {
+    throw new SquareCheckoutValidationError("Your cart is empty.");
+  }
+
+  const client = getSquareClient();
+  const locationId = getLocationId();
+  const objectIds = lines.map((line) => line.variationId);
+  const catalogResponse = await client.catalog.batchGet({ objectIds });
+  const variations = new Map<string, SquareCatalogVariation>();
+
+  for (const object of catalogResponse.objects ?? []) {
+    if (object.type === "ITEM_VARIATION") {
+      variations.set(object.id, object);
+    }
+  }
+
+  const inventory = await getInventoryByVariation(objectIds);
+
+  for (const line of lines) {
+    const variation = variations.get(line.variationId);
+    if (
+      !variation ||
+      !variation.itemVariationData ||
+      variation.isDeleted ||
+      !isPresentAtLocation(variation, locationId) ||
+      variation.itemVariationData.sellable === false
+    ) {
+      throw new SquareCheckoutValidationError(
+        "One of the boards in your cart is no longer available.",
+      );
+    }
+
+    const { price } = getVariationPrice(variation, locationId);
+    if (price <= 0) {
+      throw new SquareCheckoutValidationError(
+        "One of the boards in your cart does not have a valid fixed price.",
+      );
+    }
+
+    if (!isVariationAvailable(variation, inventory, locationId)) {
+      throw new SquareCheckoutValidationError(
+        "One of the boards in your cart is sold out.",
+      );
+    }
+
+    if (
+      isInventoryTracked(variation, locationId) &&
+      line.quantity > (inventory.get(variation.id) ?? 0)
+    ) {
+      throw new SquareCheckoutValidationError(
+        "The requested quantity is no longer available.",
+      );
+    }
+  }
+
+  const response = await client.checkout.paymentLinks.create({
+    idempotencyKey: crypto.randomUUID(),
+    description: "Ian Blackmore Designs website checkout",
+    order: {
+      locationId,
+      source: { name: "Ian Blackmore Designs Website" },
+      lineItems: lines.map((line) => ({
+        catalogObjectId: line.variationId,
+        quantity: String(line.quantity),
+      })),
+    },
+    checkoutOptions: {
+      askForShippingAddress: true,
+      redirectUrl: getCheckoutRedirectUrl(),
+    },
+  });
+
+  const checkoutUrl = response.paymentLink?.url;
+  if (!checkoutUrl) {
+    throw new Error("Square did not return a checkout URL.");
+  }
+
+  return checkoutUrl;
 }

@@ -77,7 +77,7 @@ export function BoardDetails({ board }: BoardDetailsProps) {
           />
           <p className="text-sm text-stone-500 dark:text-stone-400">
             {board.available
-              ? "Available for inquiry and future checkout."
+              ? "In stock and available for secure checkout through Square."
               : "Currently shaped by request."}
           </p>
         </div>
