@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "@/components/common/Button";
 import { CartItem, type CartLine } from "@/components/cart/CartItem";
 import { eurostileExtended, eurostileRegular } from "@/lib/fonts";
@@ -14,6 +15,7 @@ const MAX_LINE_QUANTITY = 10;
 type CartEventDetail = {
   id: string;
   title: string;
+  image: string;
   price: number;
   currency: string;
 };
@@ -85,6 +87,7 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
               item.id === detail.id
                 ? {
                     ...item,
+                    image: detail.image,
                     quantity: Math.min(item.quantity + 1, MAX_LINE_QUANTITY),
                   }
                 : item,
@@ -201,7 +204,7 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
         ) : null}
       </button>
 
-      {isOpen ? (
+      {isOpen ? createPortal(
         <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Cart">
           <button
             type="button"
@@ -245,7 +248,7 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
                   ))}
                 </ul>
                 <div className="border-t border-stone-200 pt-6 dark:border-stone-800">
-                  <div className="flex items-center justify-between text-base font-semibold text-stone-950 dark:text-stone-50">
+                  <div className={`${eurostileExtended.className} flex items-center justify-between text-base font-bold uppercase text-stone-950 dark:text-stone-50`}>
                     <span>Subtotal</span>
                     <span>${subtotal.toLocaleString("en-US")}</span>
                   </div>
@@ -259,10 +262,19 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
                   ) : null}
                   <Button
                     type="button"
-                    className="mt-5 w-full disabled:cursor-wait disabled:opacity-60"
+                    className={`${eurostileExtended.className} mt-5 w-full gap-2.5 font-bold uppercase disabled:cursor-wait disabled:opacity-60`}
                     disabled={isCheckingOut}
                     onClick={handleCheckout}
                   >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-5 w-5 shrink-0"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="4" stroke="currentColor" strokeWidth="2.5" />
+                      <rect x="8.25" y="8.25" width="7.5" height="7.5" rx="1" stroke="currentColor" strokeWidth="2.5" />
+                    </svg>
                     {isCheckingOut ? "Opening Square…" : "Checkout with Square"}
                   </Button>
                 </div>
@@ -293,7 +305,8 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
               </div>
             )}
           </aside>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </div>
   );

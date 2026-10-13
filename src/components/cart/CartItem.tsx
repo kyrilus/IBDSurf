@@ -1,6 +1,10 @@
+import Image from "next/image";
+import { eurostileExtended } from "@/lib/fonts";
+
 export type CartLine = {
   id: string;
   title: string;
+  image?: string;
   quantity: number;
   price: number;
   currency: string;
@@ -22,8 +26,21 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
 export function CartItem({ item, onDecrease, onIncrease, onRemove }: CartItemProps) {
   return (
     <li className="flex items-start justify-between gap-4 border-b border-stone-200 py-5 last:border-b-0 dark:border-stone-800">
+      {item.image ? (
+        <div className="relative h-28 w-20 shrink-0 overflow-hidden">
+          <Image
+            src={item.image}
+            alt={`${item.title} surfboard`}
+            fill
+            sizes="80px"
+            className="object-contain"
+          />
+        </div>
+      ) : null}
       <div className="min-w-0 flex-1">
-        <p className="font-medium text-stone-950 dark:text-stone-50">{item.title}</p>
+        <p className={`${eurostileExtended.className} font-bold uppercase text-stone-950 dark:text-stone-50`}>
+          {item.title}
+        </p>
         <div className="mt-3 flex items-center gap-2">
           <button
             type="button"

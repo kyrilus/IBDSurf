@@ -28,7 +28,7 @@ export function CustomBoardCard({ transparent = false }: CustomBoardCardProps) {
           </div>
         </div>
         <div className="px-6 pb-6 pt-1 text-center">
-          <h3 className={`${eurostileExtended.className} text-4xl font-bold uppercase leading-[0.95] text-stone-600 dark:text-stone-400`}>
+          <h3 className={`${eurostileExtended.className} text-4xl font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
             <span className="block">Custom</span>
             <span className="block">Board</span>
           </h3>

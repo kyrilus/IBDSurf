@@ -39,9 +39,10 @@ button {
 .surfboard-line-grid {
   position: relative;
   isolation: isolate;
+  background-color: #fafafa;
   background-image:
-    linear-gradient(to right, rgb(28 25 23 / 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(28 25 23 / 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgb(24 24 27 / 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(24 24 27 / 0.02) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
@@ -64,6 +65,7 @@ button {
 }
 
 .dark .surfboard-line-grid {
+  background-color: #0c0a09;
   background-image:
     linear-gradient(to right, rgb(255 255 255 / 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(255 255 255 / 0.02) 1px, transparent 1px);
@@ -71,5 +73,26 @@ button {
 
 .dark .surfboard-line-grid::before {
   opacity: 0.1;
+  mix-blend-mode: screen;
+}
+
+.product-detail-grid {
+  background-image:
+    linear-gradient(to right, rgb(24 24 27 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(24 24 27 / 0.05) 1px, transparent 1px);
+}
+
+.product-detail-grid::before {
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+}
+
+.dark .product-detail-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+}
+
+.dark .product-detail-grid::before {
   mix-blend-mode: screen;
 }

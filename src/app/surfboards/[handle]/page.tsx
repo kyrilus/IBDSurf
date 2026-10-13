@@ -10,6 +10,12 @@ type SurfboardPageProps = {
   }>;
 };
 
+const productBackgrounds: Record<string, string> = {
+  "mean machine": "/images/Board Details/razor-blade.png",
+  "micro machine": "/images/planar.png",
+  "middle weight": "/images/license-plate.png",
+};
+
 export async function generateStaticParams() {
   const boards = await getProducts();
 
@@ -44,19 +50,25 @@ export default async function SurfboardDetailPage({ params }: SurfboardPageProps
     notFound();
   }
 
+  const backgroundImage = productBackgrounds[board.title.trim().toLowerCase()];
+
   return (
-    <div className="relative isolate overflow-hidden bg-black">
-      <Image
-        src="/images/Board Details/razor-blade.png"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="pointer-events-none -z-10 object-cover opacity-70"
-        aria-hidden="true"
-      />
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <BoardDetails board={board} />
+    <div className="surfboard-line-grid product-detail-grid overflow-hidden bg-white dark:bg-stone-950">
+      <div>
+        {backgroundImage ? (
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="pointer-events-none object-cover opacity-15"
+            aria-hidden="true"
+          />
+        ) : null}
+        <div className="relative z-10 mx-auto max-w-[90rem] px-6 py-16 lg:px-8">
+          <BoardDetails board={board} />
+        </div>
       </div>
     </div>
   );

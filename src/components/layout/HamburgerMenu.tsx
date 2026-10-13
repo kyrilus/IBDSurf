@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Navigation } from "@/components/layout/Navigation";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
@@ -43,7 +44,7 @@ export function HamburgerMenu({ onDarkBackground = false }: HamburgerMenuProps) 
         />
       </button>
 
-      {isOpen ? (
+      {isOpen ? createPortal(
         <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Site navigation">
           <button
             type="button"
@@ -93,7 +94,8 @@ export function HamburgerMenu({ onDarkBackground = false }: HamburgerMenuProps) 
               <ThemeToggle />
             </div>
           </aside>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </div>
   );
