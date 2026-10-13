@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/common/Button";
 import { CartItem, type CartLine } from "@/components/cart/CartItem";
+import { eurostileExtended, eurostileRegular } from "@/lib/fonts";
 
 const CART_EVENT = "ibd:add-to-cart";
 const CART_CLEAR_EVENT = "ibd:clear-cart";
@@ -16,7 +18,11 @@ type CartEventDetail = {
   currency: string;
 };
 
-export function CartDrawer() {
+type CartDrawerProps = {
+  onDarkBackground?: boolean;
+};
+
+export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState<CartLine[]>([]);
   const [hasLoadedCart, setHasLoadedCart] = useState(false);
@@ -58,6 +64,15 @@ export function CartDrawer() {
       window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
     }
   }, [cart, hasLoadedCart]);
+
+  useEffect(() => {
+    function handlePageShow() {
+      setIsCheckingOut(false);
+    }
+
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, []);
 
   useEffect(() => {
     function handleAddToCart(event: Event) {
@@ -138,6 +153,7 @@ export function CartDrawer() {
         throw new Error(body.error || "Unable to start checkout.");
       }
 
+      setIsCheckingOut(false);
       window.location.assign(body.checkoutUrl);
     } catch (error) {
       setCheckoutError(
@@ -160,14 +176,29 @@ export function CartDrawer() {
   );
 
   return (
-    <div>
+    <div className="flex items-center">
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="rounded-none border border-stone-300 px-4 py-2 text-sm font-semibold text-stone-950 transition-colors hover:border-stone-950 dark:border-stone-700 dark:text-stone-50 dark:hover:border-stone-50"
+        className="relative inline-flex h-10 w-10 items-center justify-center text-stone-950 transition-colors hover:text-stone-500 dark:text-stone-50 dark:hover:text-stone-300"
         aria-label={`Open cart with ${itemCount} items`}
       >
-        Cart ({itemCount})
+        <Image
+          src="/icons/cart.svg"
+          alt=""
+          width={37}
+          height={21}
+          className={`h-auto w-8 ${onDarkBackground ? "invert-0" : "invert dark:invert-0"}`}
+          aria-hidden="true"
+        />
+        {itemCount > 0 ? (
+          <span
+            className={`absolute -right-1 -top-1 inline-flex min-h-5 min-w-5 items-center justify-center rounded-full px-1 text-[10px] font-semibold leading-none ${onDarkBackground ? "bg-white text-stone-950" : "bg-stone-950 text-white dark:bg-white dark:text-stone-950"}`}
+            aria-hidden="true"
+          >
+            {itemCount > 99 ? "99+" : itemCount}
+          </span>
+        ) : null}
       </button>
 
       {isOpen ? (
@@ -178,22 +209,25 @@ export function CartDrawer() {
             aria-label="Close cart"
             onClick={() => setIsOpen(false)}
           />
-          <aside className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-white p-6 shadow-2xl dark:bg-stone-950">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-stone-500">
-                  Shopping Cart
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-stone-950 dark:text-stone-50">
-                  Your Board Room
-                </h2>
-              </div>
+          <aside className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l-[0.5px] border-white bg-white p-6 shadow-2xl dark:bg-stone-950">
+            <div className="flex items-center justify-between gap-4">
+              <h2 className={`${eurostileExtended.className} text-xs font-bold uppercase leading-none tracking-[0.08em] text-stone-950 dark:text-stone-50 sm:text-base lg:text-lg`}>
+                Cart
+              </h2>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="rounded-none border border-stone-300 px-3 py-1 text-sm text-stone-700 transition-colors hover:border-stone-950 hover:text-stone-950 dark:border-stone-700 dark:text-stone-300 dark:hover:border-stone-50 dark:hover:text-stone-50"
+                className="inline-flex h-10 w-10 items-center justify-center transition-opacity hover:opacity-60"
+                aria-label="Close cart"
               >
-                Close
+                <Image
+                  src="/icons/close.svg"
+                  alt=""
+                  width={25}
+                  height={26}
+                  className="h-auto w-6 invert dark:invert-0"
+                  aria-hidden="true"
+                />
               </button>
             </div>
 
@@ -234,14 +268,26 @@ export function CartDrawer() {
                 </div>
               </>
             ) : (
-              <div className="flex flex-1 flex-col items-start justify-center">
-                <p className="text-lg font-medium text-stone-950 dark:text-stone-50">
-                  Your cart is empty.
+              <div className="flex flex-1 flex-col items-center justify-center text-center">
+                <Image
+                  src="/images/planar.png"
+                  alt=""
+                  width={5712}
+                  height={4284}
+                  className="mb-6 h-auto w-48 max-w-full object-contain"
+                  aria-hidden="true"
+                />
+                <p className={`${eurostileExtended.className} text-lg font-bold uppercase text-stone-950 dark:text-stone-50`}>
+                  Your cart is empty
                 </p>
-                <p className="mt-3 text-sm leading-6 text-stone-500 dark:text-stone-400">
+                <p className={`${eurostileRegular.className} mt-3 text-base leading-6 text-stone-500 dark:text-stone-400`}>
                   Add a surfboard to begin your order.
                 </p>
-                <Button href="/surfboards" className="mt-6" onClick={() => setIsOpen(false)}>
+                <Button
+                  href="/surfboards"
+                  className={`${eurostileExtended.className} mt-6 font-bold`}
+                  onClick={() => setIsOpen(false)}
+                >
                   View Boards
                 </Button>
               </div>
