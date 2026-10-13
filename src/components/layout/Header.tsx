@@ -82,7 +82,7 @@ export function Header() {
         ref={headerRef}
         className={hasHeroHeader
           ? `fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${hasHomeBackdrop ? "bg-black/35 backdrop-blur-md" : "bg-transparent"}`
-          : "fixed inset-x-0 top-0 z-40 border-b border-stone-200 bg-stone-50/90 backdrop-blur dark:border-stone-800 dark:bg-black/80"}
+          : "fixed inset-x-0 top-0 z-40 bg-stone-50/90 backdrop-blur dark:bg-black/80"}
       >
         <div className="relative flex min-h-18 w-full items-center justify-between gap-6 px-6 py-4 lg:px-8">
           <HamburgerMenu onDarkBackground={hasHeroHeader} />

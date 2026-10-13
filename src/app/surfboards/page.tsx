@@ -15,7 +15,7 @@ export default async function SurfboardsPage() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[38svh] items-center justify-center overflow-hidden bg-black px-6 py-20 text-center sm:min-h-[45svh] sm:py-24 lg:px-8">
+      <section className="relative isolate flex min-h-[70svh] items-center justify-center overflow-hidden bg-black px-6 py-20 text-center sm:min-h-[75svh] sm:py-24 lg:px-8">
         <Image
           src="/images/fins.png"
           alt=""
