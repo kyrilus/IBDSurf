@@ -8,6 +8,8 @@ type BoardCardProps = {
   transparent?: boolean;
   showPrice?: boolean;
   vividBackgrounds?: boolean;
+  compactTitle?: boolean;
+  interactiveEffects?: boolean;
 };
 
 export function BoardCard({
@@ -15,6 +17,8 @@ export function BoardCard({
   transparent = false,
   showPrice = false,
   vividBackgrounds = false,
+  compactTitle = false,
+  interactiveEffects = false,
 }: BoardCardProps) {
   const isMeanMachine = board.title.trim().toLowerCase() === "mean machine";
   const showPlanarBackground = transparent && board.title.trim().toLowerCase() === "micro machine";
@@ -28,7 +32,11 @@ export function BoardCard({
 
   return (
     <article
-      className={`group overflow-hidden rounded-[2rem] ${
+      className={`group overflow-hidden transition-colors duration-300 ${
+        interactiveEffects ? "rounded-none" : "rounded-[2rem]"
+      } ${
+        interactiveEffects ? "hover:bg-white/70 dark:hover:bg-white/[0.025]" : ""
+      } ${
         transparent
           ? "bg-transparent"
           : "border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-950"
@@ -77,7 +85,7 @@ export function BoardCard({
           </div>
         </div>
         <div className="px-6 pb-6 pt-1 text-center">
-          <h3 className={`${eurostileExtended.className} text-4xl font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
+          <h3 className={`${eurostileExtended.className} ${compactTitle ? "text-2xl sm:text-3xl" : "text-4xl"} ${interactiveEffects ? "scratch-title" : ""} mx-auto w-fit font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
             {titleLines.map((line) => (
               <span key={line} className="block">
                 {line}

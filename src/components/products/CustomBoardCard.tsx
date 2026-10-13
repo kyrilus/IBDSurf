@@ -4,12 +4,22 @@ import { eurostileExtended } from "@/lib/fonts";
 
 type CustomBoardCardProps = {
   transparent?: boolean;
+  compactTitle?: boolean;
+  scratchTitle?: boolean;
 };
 
-export function CustomBoardCard({ transparent = false }: CustomBoardCardProps) {
+export function CustomBoardCard({
+  transparent = false,
+  compactTitle = false,
+  scratchTitle = false,
+}: CustomBoardCardProps) {
   return (
     <article
-      className={`group overflow-hidden rounded-[2rem] ${
+      className={`group overflow-hidden transition-colors duration-300 ${
+        scratchTitle ? "rounded-none" : "rounded-[2rem]"
+      } ${
+        scratchTitle ? "hover:bg-white/70 dark:hover:bg-white/[0.025]" : ""
+      } ${
         transparent
           ? "bg-transparent"
           : "border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-950"
@@ -28,7 +38,7 @@ export function CustomBoardCard({ transparent = false }: CustomBoardCardProps) {
           </div>
         </div>
         <div className="px-6 pb-6 pt-1 text-center">
-          <h3 className={`${eurostileExtended.className} text-4xl font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
+          <h3 className={`${eurostileExtended.className} ${compactTitle ? "text-2xl sm:text-3xl" : "text-4xl"} ${scratchTitle ? "scratch-title" : ""} mx-auto w-fit font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
             <span className="block">Custom</span>
             <span className="block">Board</span>
           </h3>

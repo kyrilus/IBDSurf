@@ -49,7 +49,7 @@ export function HeroVideo() {
         </video>
       )}
       <div
-        className={`absolute inset-0 -z-10 ${showBoardNoses ? "bg-black/5" : "bg-black/60 dark:bg-black/75"}`}
+        className={`absolute inset-0 -z-10 ${showBoardNoses ? "bg-black/5" : "bg-black/45 dark:bg-black/60"}`}
         aria-hidden="true"
       />
       <button

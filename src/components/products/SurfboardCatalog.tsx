@@ -84,6 +84,7 @@ export function SurfboardCatalog({ boards }: SurfboardCatalogProps) {
             includeCustomBoard={showCustomBoard}
             showPrices
             reducedSize
+            interactiveEffects
           />
         ) : (
           <p className="text-stone-600 dark:text-stone-400">

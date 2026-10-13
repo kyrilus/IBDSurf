@@ -9,7 +9,7 @@ export default async function Home() {
 
   return (
     <div>
-      <section className="relative isolate flex min-h-[70svh] flex-col items-center justify-center overflow-hidden bg-white px-6 py-24 text-center dark:bg-black sm:min-h-[75svh] lg:px-8">
+      <section data-hero-section className="relative isolate flex min-h-[70svh] flex-col items-center justify-center overflow-hidden bg-white px-6 py-24 text-center dark:bg-black sm:min-h-[75svh] lg:px-8">
         <HeroVideo />
         <Image
           src="/logos/IBD-Logo-outline-white.svg"
@@ -30,7 +30,13 @@ export default async function Home() {
             SURFBOARDS
           </h2>
           {boards.length > 0 ? (
-            <BoardGrid boards={boards} transparentCards includeCustomBoard vividBackgrounds />
+            <BoardGrid
+              boards={boards}
+              transparentCards
+              includeCustomBoard
+              vividBackgrounds
+              interactiveEffects
+            />
           ) : (
             <p className="text-stone-600 dark:text-stone-400">
               No boards are available right now. Check back soon.
