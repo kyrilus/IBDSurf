@@ -71,7 +71,9 @@ export function Footer() {
               Follow
             </h2>
             <Link
-              href="#"
+              href="https://www.instagram.com/ibdesigns.us/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Ian Blackmore Designs on Instagram"
               className="mt-4 inline-flex text-stone-600 transition-colors hover:text-stone-950 dark:text-stone-400 dark:hover:text-stone-50"
             >
@@ -82,7 +84,7 @@ export function Footer() {
                 strokeWidth="1.75"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-6 w-6"
+                className="h-12 w-12"
                 aria-hidden="true"
               >
                 <rect x="3" y="3" width="18" height="18" rx="5" />

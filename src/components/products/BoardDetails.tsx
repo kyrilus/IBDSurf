@@ -16,18 +16,18 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
 export function BoardDetails({ board }: BoardDetailsProps) {
   return (
     <article className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-0">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-transparent">
+      <div className="relative mx-auto aspect-[4/5] w-full max-w-xl overflow-hidden rounded-[2.5rem] bg-transparent lg:max-w-none">
         <Image
           src={board.image}
           alt={`${board.title} surfboard`}
           fill
           sizes="(min-width: 1024px) 60vw, 100vw"
           priority
-          className="object-cover"
+          className="object-contain object-center"
         />
       </div>
 
-      <div className="bg-transparent p-8 lg:pl-4">
+      <div className="bg-transparent py-8 text-left lg:p-8 lg:pl-4">
         <p className={`${eurostileExtended.className} text-xs font-bold uppercase tracking-[0.3em] text-stone-500`}>
           Ian Blackmore Designs
         </p>

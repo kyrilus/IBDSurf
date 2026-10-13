@@ -9,7 +9,7 @@ export default async function Home() {
 
   return (
     <div>
-      <section className="relative isolate flex min-h-[60svh] flex-col items-center justify-center overflow-hidden bg-white px-6 py-24 text-center dark:bg-black sm:min-h-[75svh] lg:px-8">
+      <section className="relative isolate flex min-h-[70svh] flex-col items-center justify-center overflow-hidden bg-white px-6 py-24 text-center dark:bg-black sm:min-h-[75svh] lg:px-8">
         <HeroVideo />
         <Image
           src="/logos/IBD-Logo-outline-white.svg"
@@ -17,7 +17,7 @@ export default async function Home() {
           data-hero-logo
           width={865}
           height={1010}
-          className="relative z-10 h-auto w-48 sm:w-64 lg:w-72"
+          className="relative z-10 h-auto w-[8.4rem] sm:w-64 lg:w-72"
           preload
         />
       </section>

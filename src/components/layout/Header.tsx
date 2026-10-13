@@ -99,7 +99,7 @@ export function Header() {
             <span
               className={`[grid-area:1/1] transition-opacity duration-300 ${showNavLogo ? "opacity-0" : "opacity-100"}`}
             >
-              <span className="sm:hidden">IBD</span>
+              <span className="sm:hidden">IBDESIGNS</span>
               <span className="hidden sm:inline">IAN BLACKMORE DESIGNS</span>
             </span>
             <Image

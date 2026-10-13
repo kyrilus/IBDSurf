@@ -24,6 +24,17 @@ export function HamburgerMenu({ onDarkBackground = false }: HamburgerMenuProps) 
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   return (
     <div className="flex items-center">
       <button
@@ -39,7 +50,7 @@ export function HamburgerMenu({ onDarkBackground = false }: HamburgerMenuProps) 
           alt=""
           width={31}
           height={20}
-          className={`h-auto w-7 ${onDarkBackground ? "invert-0" : "invert dark:invert-0"}`}
+          className={`h-auto w-6 sm:w-7 ${onDarkBackground ? "invert-0" : "invert dark:invert-0"}`}
           aria-hidden="true"
         />
       </button>

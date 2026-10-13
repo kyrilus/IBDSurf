@@ -42,7 +42,7 @@ export function Navigation({ variant = "inline", onNavigate }: NavigationProps) 
             aria-current={isActive ? "page" : undefined}
             className={
               variant === "menu"
-                ? `${eurostileExtended.className} inline-flex items-center gap-3 text-xs font-bold uppercase leading-none tracking-[0.08em] transition-colors hover:text-stone-700 dark:hover:text-stone-300 sm:text-base lg:text-lg ${isActive ? "text-stone-950 dark:text-stone-50" : "text-stone-400 dark:text-stone-500"}`
+                ? `${eurostileExtended.className} inline-flex items-center gap-3 text-sm font-bold uppercase leading-none tracking-[0.08em] transition-colors hover:text-stone-700 dark:hover:text-stone-300 sm:text-lg ${isActive ? "text-stone-950 dark:text-stone-50" : "text-stone-400 dark:text-stone-500"}`
                 : "text-lg font-normal uppercase tracking-wide text-stone-700 transition-colors hover:text-stone-950 dark:text-stone-300 dark:hover:text-stone-50"
             }
           >

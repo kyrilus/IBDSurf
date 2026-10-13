@@ -77,6 +77,17 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
   }, []);
 
   useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     function handleAddToCart(event: Event) {
       const { detail } = event as CustomEvent<CartEventDetail>;
 
@@ -191,7 +202,7 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
           alt=""
           width={37}
           height={21}
-          className={`h-auto w-8 ${onDarkBackground ? "invert-0" : "invert dark:invert-0"}`}
+          className={`h-auto w-7 sm:w-8 ${onDarkBackground ? "invert-0" : "invert dark:invert-0"}`}
           aria-hidden="true"
         />
         {itemCount > 0 ? (
@@ -212,9 +223,9 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
             aria-label="Close cart"
             onClick={() => setIsOpen(false)}
           />
-          <aside className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l-[0.5px] border-white bg-white p-6 shadow-2xl dark:bg-stone-950">
+          <aside className="absolute right-0 top-0 flex h-full w-[92%] max-w-[26rem] flex-col border-l-[0.5px] border-white bg-white p-6 shadow-2xl dark:bg-stone-950">
             <div className="flex items-center justify-between gap-4">
-              <h2 className={`${eurostileExtended.className} text-xs font-bold uppercase leading-none tracking-[0.08em] text-stone-950 dark:text-stone-50 sm:text-base lg:text-lg`}>
+              <h2 className={`${eurostileExtended.className} text-sm font-bold uppercase leading-none tracking-[0.08em] text-stone-950 dark:text-stone-50 sm:text-lg`}>
                 Cart
               </h2>
               <button
