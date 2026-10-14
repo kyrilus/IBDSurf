@@ -39,15 +39,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className="h-full antialiased"
+      className="dark h-full antialiased"
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add('dark')`,
-          }}
-        />
-      </head>
       <body className="min-h-full bg-stone-50 text-stone-950 dark:bg-black dark:text-stone-50">
         <AdminContentRuntime />
         <div className="flex min-h-screen flex-col">
