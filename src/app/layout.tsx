@@ -44,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var theme;try{theme=localStorage.getItem('ibd-theme')}catch(e){}document.documentElement.classList.toggle('dark',theme!=='light')})()`,
+            __html: `document.documentElement.classList.add('dark')`,
           }}
         />
       </head>

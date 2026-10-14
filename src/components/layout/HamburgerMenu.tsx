@@ -89,39 +89,26 @@ export function HamburgerMenu({ onDarkBackground = false }: HamburgerMenuProps) 
             </div>
 
             <div className="flex items-center justify-between border-t border-stone-200 pt-6 dark:border-stone-800">
-              <Image
-                src="/logos/IBD-Logo-thick-black.svg"
-                alt="Ian Blackmore Designs"
-                width={865}
-                height={1010}
-                className="h-10 w-auto dark:hidden"
-              />
-              <Image
-                src="/logos/IBD-Logo-thick-white.svg"
-                alt="Ian Blackmore Designs"
-                width={865}
-                height={1010}
-                className="hidden h-10 w-auto dark:block"
-              />
               <Link
                 href="/admin"
                 onClick={() => setIsOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center text-stone-600 transition-colors hover:text-stone-950 dark:text-stone-400 dark:hover:text-white"
-                aria-label="Open admin settings"
+                className="inline-flex transition-opacity hover:opacity-60"
+                aria-label="Open admin"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.86 2.86-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21H9.6v-.1A1.7 1.7 0 0 0 8.6 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.86-2.86.06-.06A1.7 1.7 0 0 0 4.2 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H2.4V9.6h.1A1.7 1.7 0 0 0 4.2 8.6a1.7 1.7 0 0 0-.34-1.88l-.06-.06L6.66 3.8l.06.06A1.7 1.7 0 0 0 8.6 4.2a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1V2.4h4v.1a1.7 1.7 0 0 0 1 1.7 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.86 2.86-.06.06A1.7 1.7 0 0 0 19.4 8.6a1.7 1.7 0 0 0 .6 1 1.7 1.7 0 0 0 1.1.4h.1v4h-.1a1.7 1.7 0 0 0-1.7 1Z" />
-                </svg>
+                <Image
+                  src="/logos/IBD-Logo-thick-black.svg"
+                  alt="Ian Blackmore Designs admin"
+                  width={865}
+                  height={1010}
+                  className="h-10 w-auto dark:hidden"
+                />
+                <Image
+                  src="/logos/IBD-Logo-thick-white.svg"
+                  alt="Ian Blackmore Designs admin"
+                  width={865}
+                  height={1010}
+                  className="hidden h-10 w-auto dark:block"
+                />
               </Link>
               <ThemeToggle />
             </div>

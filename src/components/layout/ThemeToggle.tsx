@@ -1,22 +1,13 @@
 "use client";
 
 export function ThemeToggle() {
-  function toggleTheme() {
-    const dark = document.documentElement.classList.toggle("dark");
-    try {
-      localStorage.setItem("ibd-theme", dark ? "dark" : "light");
-    } catch {
-      // The toggle still works when browser storage is unavailable.
-    }
-  }
-
   return (
     <button
       type="button"
-      onClick={toggleTheme}
-      className="inline-flex h-10 w-10 shrink-0 items-center justify-center text-stone-700 transition-colors hover:text-stone-400 focus-visible:outline-2 focus-visible:outline-offset-4 dark:text-stone-200 dark:hover:text-stone-500"
-      aria-label="Toggle color theme"
-      title="Toggle color theme"
+      disabled
+      className="inline-flex h-10 w-10 shrink-0 cursor-not-allowed items-center justify-center text-stone-400 opacity-30 dark:text-stone-500"
+      aria-label="Light mode temporarily unavailable"
+      title="Light mode temporarily unavailable"
     >
       <svg
         viewBox="0 0 24 24"
