@@ -8,8 +8,8 @@ type BoardGridProps = {
   includeCustomBoard?: boolean;
   showPrices?: boolean;
   reducedSize?: boolean;
-  vividBackgrounds?: boolean;
   interactiveEffects?: boolean;
+  brightenOnHover?: boolean;
 };
 
 export function BoardGrid({
@@ -18,8 +18,8 @@ export function BoardGrid({
   includeCustomBoard = false,
   showPrices = false,
   reducedSize = false,
-  vividBackgrounds = false,
   interactiveEffects = false,
+  brightenOnHover,
 }: BoardGridProps) {
   return (
     <div className={`grid gap-4 sm:grid-cols-2 lg:grid-cols-3 ${reducedSize ? "xl:grid-cols-4" : ""}`}>
@@ -29,9 +29,9 @@ export function BoardGrid({
           board={board}
           transparent={transparentCards}
           showPrice={showPrices}
-          vividBackgrounds={vividBackgrounds}
           compactTitle={reducedSize}
           interactiveEffects={interactiveEffects}
+          brightenOnHover={brightenOnHover}
         />
       ))}
       {includeCustomBoard ? (
@@ -39,6 +39,7 @@ export function BoardGrid({
           transparent={transparentCards}
           compactTitle={reducedSize}
           scratchTitle={interactiveEffects}
+          brightenOnHover={brightenOnHover}
         />
       ) : null}
     </div>

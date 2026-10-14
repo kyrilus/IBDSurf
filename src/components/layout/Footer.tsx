@@ -9,6 +9,7 @@ export function Footer() {
         <div className="flex flex-col items-start gap-6 md:flex-row">
           <Image
             src="/logos/IBD-Logo-outline-black.svg"
+            data-admin-image="footer.logoLight"
             alt="Ian Blackmore Designs"
             width={865}
             height={1010}
@@ -16,16 +17,17 @@ export function Footer() {
           />
           <Image
             src="/logos/IBD-Logo-outline-white.svg"
+            data-admin-image="footer.logoDark"
             alt="Ian Blackmore Designs"
             width={865}
             height={1010}
             className="hidden h-20 w-auto shrink-0 dark:block"
           />
           <div>
-            <h2 className={`${eurostileExtended.className} text-base font-bold text-stone-950 dark:text-stone-50`}>
+            <h2 data-admin-text="footer.title" className={`${eurostileExtended.className} text-base font-bold text-stone-950 dark:text-stone-50`}>
               IAN BLACKMORE DESIGNS
             </h2>
-            <p className="mt-3 max-w-md text-sm leading-6 text-stone-600 dark:text-stone-400">
+            <p data-admin-text="footer.description" className="mt-3 max-w-md text-sm leading-6 text-stone-600 dark:text-stone-400">
               Custom surfboards shaped with a focus on feel, speed, and lasting
               connection to the water.
             </p>

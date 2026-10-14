@@ -6,6 +6,9 @@ import { eurostileExtended } from "@/lib/fonts";
 
 const navigationItems = [
   { href: "/", label: "Home" },
+  { href: "/home-2", label: "Home 2" },
+  { href: "/home-3", label: "Home 3" },
+  { href: "/home-4", label: "Home 4" },
   { href: "/surfboards", label: "Boards" },
   { href: "/custom", label: "Custom" },
   { href: "/about", label: "About" },

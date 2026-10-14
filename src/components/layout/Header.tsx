@@ -11,11 +11,28 @@ import { eurostileExtended } from "@/lib/fonts";
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const hasHeroHeader = isHome || pathname === "/surfboards";
+  const usesHomeNavTransition =
+    isHome || pathname === "/home-2" || pathname === "/home-3" || pathname === "/home-4";
+  const hasStaticGridHero = pathname === "/home-2";
+  const hasHomeHero = isHome || hasStaticGridHero || pathname === "/home-3" || pathname === "/home-4";
+  const hasHeroHeader = hasHomeHero;
   const headerRef = useRef<HTMLElement>(null);
   const [hasHomeBackdrop, setHasHomeBackdrop] = useState(false);
   const [hasPassedHeroLogo, setHasPassedHeroLogo] = useState(false);
   const [hasReachedHeroEnd, setHasReachedHeroEnd] = useState(false);
+  const [isGridHero, setIsGridHero] = useState(false);
+
+  useEffect(() => {
+    if (!hasHomeHero) return;
+
+    function handleHeroModeChange(event: Event) {
+      const { detail } = event as CustomEvent<{ mode?: string }>;
+      setIsGridHero(detail.mode === "grid");
+    }
+
+    window.addEventListener("ibd:hero-mode-change", handleHeroModeChange);
+    return () => window.removeEventListener("ibd:hero-mode-change", handleHeroModeChange);
+  }, [hasHomeHero]);
 
   useEffect(() => {
     if (!hasHeroHeader) return;
@@ -55,15 +72,15 @@ export function Header() {
     };
   }, [hasHeroHeader, pathname]);
 
-  const showNavLogo = isHome ? hasPassedHeroLogo : true;
-  const usesDarkHeroControls = hasHeroHeader && !hasReachedHeroEnd;
+  const showNavLogo = usesHomeNavTransition ? hasPassedHeroLogo : true;
+  const usesDarkHeroControls = hasHeroHeader && !hasReachedHeroEnd && !(hasHomeHero && (isGridHero || hasStaticGridHero));
 
   return (
     <>
       <header
         ref={headerRef}
         className={hasHeroHeader
-          ? `fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${hasReachedHeroEnd ? "bg-white/70 backdrop-blur-md dark:bg-black/35" : hasHomeBackdrop ? "bg-black/35 backdrop-blur-md" : "bg-transparent"}`
+          ? `fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${hasReachedHeroEnd ? "bg-white/70 backdrop-blur-md dark:bg-black/35" : hasHomeHero && (isGridHero || hasStaticGridHero) ? "bg-transparent" : hasHomeBackdrop ? "bg-black/35 backdrop-blur-md" : "bg-transparent"}`
           : "fixed inset-x-0 top-0 z-40 bg-stone-50/90 backdrop-blur dark:bg-black/80"}
       >
         <div className="relative flex min-h-18 w-full items-center justify-between gap-6 px-6 py-4 lg:px-8">

@@ -122,3 +122,11 @@ button {
 .dark .scratch-title::after {
   filter: invert(0.94);
 }
+
+.home-hero:has([data-hero-mode="grid"]) [data-hero-logo] {
+  filter: invert(1);
+}
+
+.dark .home-hero:has([data-hero-mode="grid"]) [data-hero-logo] {
+  filter: none;
+}

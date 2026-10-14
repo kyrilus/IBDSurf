@@ -36,7 +36,7 @@ export function SurfboardCatalog({ boards }: SurfboardCatalogProps) {
 
   return (
     <>
-      <div className="border-b border-stone-950/10 dark:border-white/10">
+      <div>
         <div className="mx-auto flex max-w-7xl flex-col items-stretch gap-4 px-6 py-5 sm:flex-row sm:items-center lg:px-8">
           <span className={`${eurostileExtended.className} shrink-0 text-xs font-bold uppercase tracking-[0.08em] text-stone-500`}>
             Filter

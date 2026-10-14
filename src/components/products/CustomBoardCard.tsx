@@ -6,19 +6,22 @@ type CustomBoardCardProps = {
   transparent?: boolean;
   compactTitle?: boolean;
   scratchTitle?: boolean;
+  brightenOnHover?: boolean;
 };
 
 export function CustomBoardCard({
   transparent = false,
   compactTitle = false,
   scratchTitle = false,
+  brightenOnHover,
 }: CustomBoardCardProps) {
+  const shouldBrightenOnHover = brightenOnHover ?? scratchTitle;
   return (
     <article
       className={`group overflow-hidden transition-colors duration-300 ${
         scratchTitle ? "rounded-none" : "rounded-[2rem]"
       } ${
-        scratchTitle ? "hover:bg-white/70 dark:hover:bg-white/[0.025]" : ""
+        shouldBrightenOnHover ? "hover:bg-white/70 dark:hover:bg-white/[0.025]" : ""
       } ${
         transparent
           ? "bg-transparent"

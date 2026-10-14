@@ -7,22 +7,20 @@ type BoardCardProps = {
   board: Board;
   transparent?: boolean;
   showPrice?: boolean;
-  vividBackgrounds?: boolean;
   compactTitle?: boolean;
   interactiveEffects?: boolean;
+  brightenOnHover?: boolean;
 };
 
 export function BoardCard({
   board,
   transparent = false,
   showPrice = false,
-  vividBackgrounds = false,
   compactTitle = false,
   interactiveEffects = false,
+  brightenOnHover,
 }: BoardCardProps) {
-  const isMeanMachine = board.title.trim().toLowerCase() === "mean machine";
-  const showPlanarBackground = transparent && board.title.trim().toLowerCase() === "micro machine";
-  const showLicensePlateBackground = transparent && board.title.trim().toLowerCase() === "middle weight";
+  const shouldBrightenOnHover = brightenOnHover ?? interactiveEffects;
   const titleWords = board.title.trim().split(/\s+/);
   const titleBreak = Math.ceil(titleWords.length / 2);
   const titleLines = [
@@ -35,7 +33,7 @@ export function BoardCard({
       className={`group overflow-hidden transition-colors duration-300 ${
         interactiveEffects ? "rounded-none" : "rounded-[2rem]"
       } ${
-        interactiveEffects ? "hover:bg-white/70 dark:hover:bg-white/[0.025]" : ""
+        shouldBrightenOnHover ? "hover:bg-white/70 dark:hover:bg-white/[0.025]" : ""
       } ${
         transparent
           ? "bg-transparent"
@@ -44,36 +42,6 @@ export function BoardCard({
     >
       <Link href={`/surfboards/${board.handle}`} className="block">
         <div className="relative aspect-[4/5] overflow-hidden bg-transparent">
-          {isMeanMachine ? (
-            <Image
-              src="/images/Board Details/razor-blade.png"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className={`pointer-events-none scale-90 object-contain ${vividBackgrounds ? "opacity-[0.24]" : "opacity-[0.14]"}`}
-              aria-hidden="true"
-            />
-          ) : null}
-          {showPlanarBackground ? (
-            <Image
-              src="/images/planar.png"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className={`pointer-events-none scale-90 object-contain ${vividBackgrounds ? "opacity-[0.22]" : "opacity-[0.12]"}`}
-              aria-hidden="true"
-            />
-          ) : null}
-          {showLicensePlateBackground ? (
-            <Image
-              src="/images/license-plate.png"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className={`pointer-events-none scale-80 object-contain ${vividBackgrounds ? "opacity-[0.22]" : "opacity-[0.12]"}`}
-              aria-hidden="true"
-            />
-          ) : null}
           <div className="absolute inset-5 z-10 sm:inset-6">
             <Image
               src={board.image}

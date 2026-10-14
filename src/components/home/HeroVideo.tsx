@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [showBoardNoses, setShowBoardNoses] = useState(false);
+  const [heroMode, setHeroMode] = useState<"video" | "image" | "grid">("video");
 
   useEffect(() => {
     const video = videoRef.current;
@@ -20,11 +20,34 @@ export function HeroVideo() {
     setPlaybackSpeed();
     video.addEventListener("loadedmetadata", setPlaybackSpeed);
     return () => video.removeEventListener("loadedmetadata", setPlaybackSpeed);
-  }, [showBoardNoses]);
+  }, [heroMode]);
+
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("ibd:hero-mode-change", { detail: { mode: heroMode } }),
+    );
+  }, [heroMode]);
+
+  const showBoardNoses = heroMode === "image";
+  const showGrid = heroMode === "grid";
+
+  function cycleHeroMode() {
+    setHeroMode((current) => {
+      if (current === "video") return "image";
+      if (current === "image") return "grid";
+      return "video";
+    });
+  }
 
   return (
     <>
-      {showBoardNoses ? (
+      {showGrid ? (
+        <div
+          data-hero-mode="grid"
+          className="surfboard-line-grid pointer-events-none absolute inset-0 z-[1] bg-white dark:bg-stone-950"
+          aria-hidden="true"
+        />
+      ) : showBoardNoses ? (
         <Image
           src="/images/hero/board-noses.png"
           alt=""
@@ -48,16 +71,17 @@ export function HeroVideo() {
           <source src="/videos/surf-hero-sample.mov" type="video/quicktime" />
         </video>
       )}
-      <div
-        className={`absolute inset-0 -z-10 ${showBoardNoses ? "bg-black/5" : "bg-black/45 dark:bg-black/60"}`}
-        aria-hidden="true"
-      />
+      {!showGrid ? (
+        <div
+          className={`absolute inset-0 -z-10 ${showBoardNoses ? "bg-black/5" : "bg-black/45 dark:bg-black/60"}`}
+          aria-hidden="true"
+        />
+      ) : null}
       <button
         type="button"
-        onClick={() => setShowBoardNoses((current) => !current)}
-        className="absolute bottom-3 right-3 z-30 border border-white/30 bg-transparent px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-white/60 transition-colors hover:border-white/70 hover:text-white"
-        aria-label={showBoardNoses ? "Switch hero to video" : "Switch hero to board noses image"}
-        aria-pressed={showBoardNoses}
+        onClick={cycleHeroMode}
+        className={`absolute bottom-3 right-3 z-30 border bg-transparent px-2 py-1 text-[9px] uppercase tracking-[0.14em] transition-colors ${showGrid ? "border-stone-950/25 text-stone-950/60 hover:border-stone-950/70 hover:text-stone-950 dark:border-white/30 dark:text-white/60 dark:hover:border-white/70 dark:hover:text-white" : "border-white/30 text-white/60 hover:border-white/70 hover:text-white"}`}
+        aria-label="Switch to the next hero background"
       >
         Switch
       </button>
