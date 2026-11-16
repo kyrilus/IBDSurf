@@ -1,0 +1,1214 @@
+[
+  {
+    "name": "homePage",
+    "type": "document",
+    "title": "Home",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "hidden": true
+      },
+      {
+        "name": "image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative text",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.required(); }"
+            }
+          }
+        ],
+        "title": "Page Background Image",
+        "description": "The homepage background behind the hero logo and surfboard catalog. Upload or select an image, then publish to update the website."
+      },
+      {
+        "name": "heroLogo",
+        "title": "Hero logo",
+        "type": "image",
+        "description": "The logo displayed over the homepage hero background. Use an image with a transparent background. Leave empty to use the original IBD logo.",
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative text",
+            "type": "string",
+            "initialValue": "Ian Blackmore Designs"
+          }
+        ]
+      },
+      {
+        "name": "catalogHeading",
+        "type": "string",
+        "initialValue": "Surfboards"
+      },
+      {
+        "name": "showCustomBoard",
+        "title": "Show custom board",
+        "type": "boolean",
+        "initialValue": true,
+        "description": "Show the custom-order card in the homepage surfboard catalog."
+      },
+      {
+        "name": "seo",
+        "title": "SEO",
+        "type": "object",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(60).warning(); }"
+            }
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "rows": 3,
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(160).warning(); }"
+            }
+          }
+        ]
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Home' }); }"
+      }
+    }
+  },
+  {
+    "name": "aboutPage",
+    "type": "document",
+    "title": "About",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "eyebrow",
+        "type": "string"
+      },
+      {
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "name": "body",
+        "type": "array",
+        "of": [
+          {
+            "type": "block"
+          }
+        ]
+      },
+      {
+        "name": "image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative text",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.required(); }"
+            }
+          }
+        ]
+      },
+      {
+        "name": "seo",
+        "title": "SEO",
+        "type": "object",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(60).warning(); }"
+            }
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "rows": 3,
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(160).warning(); }"
+            }
+          }
+        ]
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'About' }); }"
+      }
+    }
+  },
+  {
+    "name": "contactPage",
+    "type": "document",
+    "title": "Contact",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "showEyebrow",
+        "title": "Show eyebrow",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "eyebrow",
+        "type": "string"
+      },
+      {
+        "name": "showHeading",
+        "title": "Show heading",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "name": "body",
+        "type": "array",
+        "of": [
+          {
+            "type": "block"
+          }
+        ]
+      },
+      {
+        "name": "image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative text",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.required(); }"
+            }
+          }
+        ]
+      },
+      {
+        "name": "showEmail",
+        "title": "Show email",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "validation": {
+          "functionSource": "function (rule) { return rule.email(); }"
+        }
+      },
+      {
+        "name": "showPhone",
+        "title": "Show phone",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "phone",
+        "type": "string"
+      },
+      {
+        "name": "showAddress",
+        "title": "Show address",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "location",
+        "title": "Address",
+        "type": "text",
+        "rows": 2
+      },
+      {
+        "name": "showInstagram",
+        "title": "Show Instagram",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "instagramUrl",
+        "title": "Instagram URL",
+        "type": "url",
+        "validation": {
+          "functionSource": "function (rule) { return rule.uri({ scheme: ['https'] }); }"
+        }
+      },
+      {
+        "name": "seo",
+        "title": "SEO",
+        "type": "object",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(60).warning(); }"
+            }
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "rows": 3,
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(160).warning(); }"
+            }
+          }
+        ]
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Contact' }); }"
+      }
+    }
+  },
+  {
+    "name": "footer",
+    "title": "Footer",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "brandLogo",
+        "title": "Brand logo",
+        "type": "image",
+        "description": "Footer logo for the dark website background. Use a transparent image.",
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative text",
+            "type": "string",
+            "initialValue": "Ian Blackmore Designs"
+          }
+        ]
+      },
+      {
+        "name": "brandName",
+        "type": "string",
+        "initialValue": "IAN BLACKMORE DESIGNS"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "rows": 3
+      },
+      {
+        "name": "shopHeading",
+        "title": "Footer Heading 1",
+        "type": "string",
+        "initialValue": "Shop"
+      },
+      {
+        "name": "shopLinks",
+        "type": "array",
+        "of": [
+          {
+            "name": "footerLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "href",
+                "title": "Link destination",
+                "type": "url",
+                "description": "A relative path such as /about, or an https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http', 'mailto', 'tel'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "brandHeading",
+        "title": "Footer Heading 2",
+        "type": "string",
+        "initialValue": "Brand"
+      },
+      {
+        "name": "brandLinks",
+        "type": "array",
+        "of": [
+          {
+            "name": "footerLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "href",
+                "title": "Link destination",
+                "type": "url",
+                "description": "A relative path such as /about, or an https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http', 'mailto', 'tel'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "followHeading",
+        "title": "Footer Heading 3",
+        "type": "string",
+        "initialValue": "Follow"
+      },
+      {
+        "name": "instagramUrl",
+        "title": "Instagram URL",
+        "type": "url",
+        "validation": {
+          "functionSource": "function (rule) { return rule.uri({ scheme: ['https'] }); }"
+        }
+      },
+      {
+        "name": "copyrightName",
+        "type": "string",
+        "description": "The current year is added automatically."
+      },
+      {
+        "name": "legalLinks",
+        "type": "array",
+        "of": [
+          {
+            "name": "footerLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "href",
+                "title": "Link destination",
+                "type": "url",
+                "description": "A relative path such as /about, or an https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http', 'mailto', 'tel'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Footer' }); }"
+      }
+    }
+  },
+  {
+    "name": "header",
+    "title": "Header",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "brandName",
+        "type": "string",
+        "initialValue": "IAN BLACKMORE DESIGNS",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Desktop Company Name Header"
+      },
+      {
+        "name": "mobileLineOne",
+        "type": "string",
+        "initialValue": "IAN BLACKMORE",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Mobile Company Name Header - Line 1"
+      },
+      {
+        "name": "mobileLineTwo",
+        "type": "string",
+        "initialValue": "DESIGNS",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Mobile Company Name Header - Line 2"
+      },
+      {
+        "name": "homeLabel",
+        "type": "string",
+        "initialValue": "Ian Blackmore Designs home",
+        "hidden": true
+      },
+      {
+        "name": "lightLogo",
+        "title": "Logo for dark backgrounds",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        }
+      },
+      {
+        "name": "darkLogo",
+        "title": "Logo for light backgrounds",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "hidden": true
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Header' }); }"
+      }
+    }
+  },
+  {
+    "name": "menu",
+    "title": "Menu",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "heading",
+        "title": "Menu heading",
+        "type": "string",
+        "initialValue": "Menu"
+      },
+      {
+        "name": "showHeading",
+        "title": "Show menu heading",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "initialValue": "Site navigation",
+        "hidden": true
+      },
+      {
+        "name": "openLabel",
+        "type": "string",
+        "initialValue": "Open navigation menu",
+        "hidden": true
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "initialValue": "Close navigation menu",
+        "hidden": true
+      },
+      {
+        "name": "links",
+        "type": "array",
+        "of": [
+          {
+            "name": "navigationLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "initialValue": "New link",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "href",
+                "title": "Link destination",
+                "type": "url",
+                "description": "Use /about for a page or an https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Menu' }); }"
+      }
+    }
+  },
+  {
+    "name": "shoppingCart",
+    "title": "Shopping Cart",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "description": "Customer-facing cart text and artwork. Products, prices, inventory, and payments are managed by Square.",
+    "fields": [
+      {
+        "name": "title",
+        "title": "Cart heading",
+        "type": "string",
+        "initialValue": "Cart",
+        "description": "The heading displayed at the top of the shopping cart slide-out.",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "openLabel",
+        "type": "string",
+        "initialValue": "Open cart",
+        "hidden": true
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "initialValue": "Close cart",
+        "hidden": true
+      },
+      {
+        "name": "emptyHeading",
+        "type": "string",
+        "initialValue": "Your cart is empty",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "emptyDescription",
+        "type": "string",
+        "initialValue": "Add a surfboard to begin your order.",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "emptyImage",
+        "title": "Empty cart illustration",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        }
+      },
+      {
+        "name": "browseLabel",
+        "type": "string",
+        "initialValue": "View Boards",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Empty Cart Button Label"
+      },
+      {
+        "name": "browseHref",
+        "title": "Empty Cart Button Link",
+        "type": "url",
+        "initialValue": "/surfboards",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http'] }); }"
+        }
+      },
+      {
+        "name": "subtotalLabel",
+        "type": "string",
+        "initialValue": "Subtotal",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "checkoutNote",
+        "type": "string",
+        "initialValue": "Taxes and shipping are calculated securely by Square.",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "checkoutLabel",
+        "type": "string",
+        "initialValue": "Checkout with Square",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Checkout Button Label"
+      },
+      {
+        "name": "checkoutLoadingLabel",
+        "type": "string",
+        "initialValue": "Opening Square…",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Checkout Button Loading Label"
+      },
+      {
+        "name": "removeLabel",
+        "type": "string",
+        "initialValue": "Remove",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Remove Item Label"
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Shopping Cart' }); }"
+      }
+    }
+  },
+  {
+    "name": "boardsPage",
+    "title": "Boards",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "backgroundImage",
+        "title": "Page Background Image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "description": "Optional full-page background. Leave empty to keep the original page background."
+      },
+      {
+        "name": "heading",
+        "type": "string",
+        "initialValue": "SURFBOARDS",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        }
+      },
+      {
+        "name": "seoTitle",
+        "title": "SEO title",
+        "type": "string",
+        "initialValue": "Surfboards"
+      },
+      {
+        "name": "seoDescription",
+        "title": "SEO description",
+        "type": "text",
+        "rows": 3
+      },
+      {
+        "name": "filterLabel",
+        "type": "string",
+        "initialValue": "Filter"
+      },
+      {
+        "name": "showCategoryFilters",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "categoryFilters",
+        "type": "array",
+        "description": "Reorder, rename, or remove filter buttons. Availability comes from Square; Custom shows the custom-order card.",
+        "of": [
+          {
+            "name": "categoryFilter",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "mode",
+                "type": "string",
+                "options": {
+                  "list": [
+                    {
+                      "title": "All boards",
+                      "value": "all"
+                    },
+                    {
+                      "title": "Available in Square",
+                      "value": "available"
+                    },
+                    {
+                      "title": "Custom orders",
+                      "value": "custom"
+                    }
+                  ]
+                },
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "mode"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "showPriceFilter",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "priceLabel",
+        "type": "string",
+        "initialValue": "Price"
+      },
+      {
+        "name": "anyPriceLabel",
+        "type": "string",
+        "initialValue": "Any Price"
+      },
+      {
+        "name": "priceRanges",
+        "type": "array",
+        "description": "Prices use the same currency units as the catalog (currently USD). Leave a bound empty for no limit. Minimum is inclusive; maximum is exclusive.",
+        "of": [
+          {
+            "name": "priceRange",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "minPrice",
+                "type": "number",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.min(0); }"
+                }
+              },
+              {
+                "name": "maxPrice",
+                "type": "number",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.min(0); }"
+                }
+              }
+            ],
+            "validation": {
+              "functionSource": "function (rule) { return rule.custom(function (value) {\n                        if (!value)\n                            return true;\n                        var _a = value, minPrice = _a.minPrice, maxPrice = _a.maxPrice;\n                        return minPrice != null && maxPrice != null && maxPrice <= minPrice ? 'Maximum must be greater than minimum.' : true;\n                    }); }"
+            },
+            "preview": {
+              "select": {
+                "title": "label"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "showCustomBoard",
+        "title": "Show custom-order card",
+        "type": "boolean",
+        "initialValue": true
+      },
+      {
+        "name": "emptyMessage",
+        "type": "string",
+        "initialValue": "No boards match this filter right now."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Boards' }); }"
+      }
+    }
+  },
+  {
+    "name": "customPage",
+    "title": "Custom",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fieldsets": [
+      {
+        "name": "requestForm",
+        "title": "Custom Request Form",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      },
+      {
+        "name": "sideModal",
+        "title": "Side Modal",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      },
+      {
+        "name": "seo",
+        "title": "SEO",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      }
+    ],
+    "fields": [
+      {
+        "name": "heading",
+        "title": "Page heading",
+        "type": "string",
+        "initialValue": "CUSTOM BOARD ORDER"
+      },
+      {
+        "name": "backgroundImage",
+        "title": "Page Background Image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        }
+      },
+      {
+        "name": "formFields",
+        "fieldset": "requestForm",
+        "title": "Form fields",
+        "type": "array",
+        "description": "Add, remove, or drag fields to reorder them. Fields occupy one of two columns unless Full width is enabled. An empty list hides all inputs.",
+        "of": [
+          {
+            "name": "customFormField",
+            "title": "Form field",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "inputType",
+                "title": "Field type",
+                "type": "string",
+                "initialValue": "text",
+                "options": {
+                  "list": [
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "Email",
+                      "value": "email"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "tel"
+                    },
+                    {
+                      "title": "Number",
+                      "value": "number"
+                    },
+                    {
+                      "title": "Long text",
+                      "value": "textarea"
+                    },
+                    {
+                      "title": "Dropdown",
+                      "value": "select"
+                    }
+                  ]
+                },
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                }
+              },
+              {
+                "name": "placeholder",
+                "type": "string"
+              },
+              {
+                "name": "required",
+                "title": "Required field",
+                "type": "boolean",
+                "initialValue": false
+              },
+              {
+                "name": "fullWidth",
+                "title": "Full width (both columns)",
+                "type": "boolean",
+                "initialValue": false
+              },
+              {
+                "name": "options",
+                "title": "Dropdown choices",
+                "type": "array",
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "hidden": {
+                  "functionSource": "function (_a) {\n                                var parent = _a.parent;\n                                return (parent === null || parent === void 0 ? void 0 : parent.inputType) !== 'select';\n                            }"
+                },
+                "validation": {
+                  "functionSource": "function (rule) { return rule.custom(function (value, context) { var _a; return ((_a = context.parent) === null || _a === void 0 ? void 0 : _a.inputType) === 'select' && (!Array.isArray(value) || value.length === 0) ? 'Add at least one choice for a dropdown.' : true; }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "inputType"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "submitLabel",
+        "title": "Submit Button Label",
+        "type": "string",
+        "fieldset": "requestForm",
+        "initialValue": "Submit Request"
+      },
+      {
+        "name": "submitNote",
+        "title": "Submit Button Note",
+        "type": "text",
+        "fieldset": "requestForm",
+        "initialValue": "This opens your email app with the request filled in for you to review and send."
+      },
+      {
+        "name": "contactEmail",
+        "fieldset": "sideModal",
+        "type": "string",
+        "initialValue": "ian@ibdesigns.us",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required().email(); }"
+        }
+      },
+      {
+        "name": "formCopy",
+        "title": "Sidebar text",
+        "type": "object",
+        "fieldset": "sideModal",
+        "options": {
+          "collapsible": false
+        },
+        "fields": [
+          {
+            "name": "nameLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "emailLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "phoneLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "boardTypeLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "boardTypePlaceholder",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "dimensionsLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "dimensionsPlaceholder",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "experienceLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "experiencePlaceholder",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "detailsLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "detailsPlaceholder",
+            "hidden": true,
+            "type": "text"
+          },
+          {
+            "name": "submitLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "submitNote",
+            "hidden": true,
+            "type": "text"
+          },
+          {
+            "name": "sidebarHeading",
+            "type": "string"
+          },
+          {
+            "name": "sidebarDescription",
+            "type": "text"
+          },
+          {
+            "name": "copyEmailLabel",
+            "title": "Copy Email Button Label",
+            "type": "string"
+          },
+          {
+            "name": "emailButtonLabel",
+            "type": "string"
+          },
+          {
+            "name": "emailCopiedMessage",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "boardTypes",
+        "hidden": true,
+        "title": "Board type options",
+        "type": "array",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "validation": {
+          "functionSource": "function (rule) { return rule.min(1).unique(); }"
+        }
+      },
+      {
+        "name": "experienceLevels",
+        "hidden": true,
+        "title": "Surfing experience options",
+        "type": "array",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "validation": {
+          "functionSource": "function (rule) { return rule.min(1).unique(); }"
+        }
+      },
+      {
+        "name": "seoTitle",
+        "fieldset": "seo",
+        "title": "SEO title",
+        "type": "string",
+        "description": "Optional. Uses the page heading when empty."
+      },
+      {
+        "name": "seoDescription",
+        "fieldset": "seo",
+        "title": "SEO description",
+        "type": "text",
+        "rows": 3
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Custom' }); }"
+      }
+    }
+  }
+]

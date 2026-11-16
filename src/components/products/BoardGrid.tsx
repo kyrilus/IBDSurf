@@ -38,7 +38,7 @@ export function BoardGrid({
         <CustomBoardCard
           transparent={transparentCards}
           compactTitle={reducedSize}
-          scratchTitle={interactiveEffects}
+          interactiveEffects={interactiveEffects}
           brightenOnHover={brightenOnHover}
         />
       ) : null}

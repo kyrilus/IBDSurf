@@ -1,5 +1,6 @@
 "use client";
 
+import type { HEADER_QUERY_RESULT, MENU_QUERY_RESULT, SHOPPING_CART_QUERY_RESULT } from "@/sanity/types";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,32 +9,14 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import { HamburgerMenu } from "@/components/layout/HamburgerMenu";
 import { eurostileExtended } from "@/lib/fonts";
 
-export function Header() {
+export function Header({ content, menu, cart }: { content: HEADER_QUERY_RESULT; menu: MENU_QUERY_RESULT; cart: SHOPPING_CART_QUERY_RESULT }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const usesHomeNavTransition =
-    isHome || pathname === "/home-2" || pathname === "/home-3" || pathname === "/home-4";
-  const hasStaticGridHero = pathname === "/home-2";
-  const hasHomeHero = isHome || hasStaticGridHero || pathname === "/home-3" || pathname === "/home-4";
-  const hasHeroHeader = hasHomeHero;
+  const hasHeroHeader = isHome;
   const headerRef = useRef<HTMLElement>(null);
   const [hasHomeBackdrop, setHasHomeBackdrop] = useState(false);
   const [hasPassedHeroLogo, setHasPassedHeroLogo] = useState(false);
   const [hasReachedHeroEnd, setHasReachedHeroEnd] = useState(false);
-  const [isGridHero, setIsGridHero] = useState(false);
-
-  useEffect(() => {
-    if (!hasHomeHero) return;
-
-    function handleHeroModeChange(event: Event) {
-      const { detail } = event as CustomEvent<{ mode?: string }>;
-      setIsGridHero(detail.mode === "grid");
-    }
-
-    window.addEventListener("ibd:hero-mode-change", handleHeroModeChange);
-    return () => window.removeEventListener("ibd:hero-mode-change", handleHeroModeChange);
-  }, [hasHomeHero]);
-
   useEffect(() => {
     if (!hasHeroHeader) return;
 
@@ -72,22 +55,22 @@ export function Header() {
     };
   }, [hasHeroHeader, pathname]);
 
-  const showNavLogo = usesHomeNavTransition ? hasPassedHeroLogo : true;
-  const usesDarkHeroControls = hasHeroHeader && !hasReachedHeroEnd && !(hasHomeHero && (isGridHero || hasStaticGridHero));
+  const showNavLogo = isHome ? hasPassedHeroLogo : true;
+  const usesDarkHeroControls = hasHeroHeader && !hasReachedHeroEnd;
 
   return (
     <>
       <header
         ref={headerRef}
         className={hasHeroHeader
-          ? `fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${hasReachedHeroEnd ? "bg-white/70 backdrop-blur-md dark:bg-black/35" : hasHomeHero && (isGridHero || hasStaticGridHero) ? "bg-transparent" : hasHomeBackdrop ? "bg-black/35 backdrop-blur-md" : "bg-transparent"}`
+          ? `fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${hasReachedHeroEnd ? "bg-white/70 backdrop-blur-md dark:bg-black/35" : hasHomeBackdrop ? "bg-black/35 backdrop-blur-md" : "bg-transparent"}`
           : "fixed inset-x-0 top-0 z-40 bg-stone-50/90 backdrop-blur dark:bg-black/80"}
       >
         <div className="relative flex min-h-18 w-full items-center justify-between gap-6 px-6 py-4 lg:px-8">
-          <HamburgerMenu onDarkBackground={usesDarkHeroControls} />
+          <HamburgerMenu onDarkBackground={usesDarkHeroControls} content={menu} header={content} />
           <Link
             href="/"
-            aria-label="Ian Blackmore Designs home"
+            aria-label={content?.homeLabel ?? "Ian Blackmore Designs home"}
             onClick={(event) => {
               if (!isHome) return;
               event.preventDefault();
@@ -98,20 +81,21 @@ export function Header() {
             <span
               className={`[grid-area:1/1] transition-opacity duration-300 ${showNavLogo ? "opacity-0" : "opacity-100"}`}
             >
-              <span className="sm:hidden">IBDESIGNS</span>
-              <span className="hidden sm:inline">IAN BLACKMORE DESIGNS</span>
+              <span className="text-center leading-[0.9] sm:hidden">
+                <span className="block">{content?.mobileLineOne ?? "IAN BLACKMORE"}</span>
+                <span className="block">{content?.mobileLineTwo ?? "DESIGNS"}</span>
+              </span>
+              <span className="hidden sm:inline">{content?.brandName ?? "IAN BLACKMORE DESIGNS"}</span>
             </span>
-            <Image
-              src="/logos/IBD-Logo-thick-white.svg"
-              alt=""
-              width={865}
-              height={1010}
-              className={`h-10 w-auto [grid-area:1/1] transition-opacity duration-300 ${usesDarkHeroControls ? "" : "invert dark:invert-0"} ${showNavLogo ? "opacity-100" : "opacity-0"}`}
-              aria-hidden="true"
-            />
+            {usesDarkHeroControls ? (
+              <Image src={content?.lightLogoUrl ?? "/logos/IBD-Logo-thick-white.svg"} alt="" width={865} height={1010} className={`h-10 w-auto [grid-area:1/1] transition-opacity duration-300 ${showNavLogo ? "opacity-100" : "opacity-0"}`} aria-hidden="true" />
+            ) : <>
+              <Image src={content?.darkLogoUrl ?? "/logos/IBD-Logo-thick-black.svg"} alt="" width={865} height={1010} className={`h-10 w-auto [grid-area:1/1] transition-opacity duration-300 dark:hidden ${showNavLogo ? "opacity-100" : "opacity-0"}`} aria-hidden="true" />
+              <Image src={content?.lightLogoUrl ?? "/logos/IBD-Logo-thick-white.svg"} alt="" width={865} height={1010} className={`hidden h-10 w-auto [grid-area:1/1] transition-opacity duration-300 dark:block ${showNavLogo ? "opacity-100" : "opacity-0"}`} aria-hidden="true" />
+            </>}
           </Link>
           <div className="ml-auto flex items-center gap-3">
-            <CartDrawer onDarkBackground={usesDarkHeroControls} />
+            <CartDrawer onDarkBackground={usesDarkHeroControls} content={cart} />
           </div>
         </div>
       </header>

@@ -12,6 +12,7 @@ export type CartLine = {
 
 type CartItemProps = {
   item: CartLine;
+  removeLabel?: string;
   onDecrease: () => void;
   onIncrease: () => void;
   onRemove: () => void;
@@ -23,7 +24,7 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
-export function CartItem({ item, onDecrease, onIncrease, onRemove }: CartItemProps) {
+export function CartItem({ item, onDecrease, onIncrease, onRemove, removeLabel = "Remove" }: CartItemProps) {
   return (
     <li className="flex items-start justify-between gap-4 border-b border-stone-200 py-5 last:border-b-0 dark:border-stone-800">
       {item.image ? (
@@ -66,7 +67,7 @@ export function CartItem({ item, onDecrease, onIncrease, onRemove }: CartItemPro
             onClick={onRemove}
             className="ml-2 text-xs font-semibold uppercase tracking-wide text-stone-500 hover:text-stone-950 dark:hover:text-stone-50"
           >
-            Remove
+            {removeLabel}
           </button>
         </div>
       </div>

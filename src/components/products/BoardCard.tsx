@@ -53,7 +53,7 @@ export function BoardCard({
           </div>
         </div>
         <div className="px-6 pb-6 pt-1 text-center">
-          <h3 className={`${eurostileExtended.className} ${compactTitle ? "text-2xl sm:text-3xl" : "text-4xl"} ${interactiveEffects ? "scratch-title" : ""} mx-auto w-fit font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
+          <h3 className={`${eurostileExtended.className} ${compactTitle ? "text-2xl sm:text-3xl" : "text-4xl"} mx-auto w-fit font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
             {titleLines.map((line) => (
               <span key={line} className="block">
                 {line}

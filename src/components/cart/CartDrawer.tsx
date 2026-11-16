@@ -1,5 +1,7 @@
 "use client";
 
+import type { SHOPPING_CART_QUERY_RESULT } from "@/sanity/types";
+import { safeNavigationHref } from "@/lib/navigation";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
@@ -22,9 +24,10 @@ type CartEventDetail = {
 
 type CartDrawerProps = {
   onDarkBackground?: boolean;
+  content?: SHOPPING_CART_QUERY_RESULT;
 };
 
-export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
+export function CartDrawer({ onDarkBackground = false, content }: CartDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState<CartLine[]>([]);
   const [hasLoadedCart, setHasLoadedCart] = useState(false);
@@ -195,7 +198,7 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
         type="button"
         onClick={() => setIsOpen(true)}
         className="relative inline-flex h-10 w-10 items-center justify-center text-stone-950 transition-colors hover:text-stone-500 dark:text-stone-50 dark:hover:text-stone-300"
-        aria-label={`Open cart with ${itemCount} items`}
+        aria-label={`${content?.openLabel ?? "Open cart"} (${itemCount})`}
       >
         <Image
           src="/icons/cart.svg"
@@ -216,23 +219,23 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
       </button>
 
       {isOpen ? createPortal(
-        <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Cart">
+        <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label={content?.title ?? "Cart"}>
           <button
             type="button"
             className="absolute inset-0 bg-stone-950/40"
-            aria-label="Close cart"
+            aria-label={content?.closeLabel ?? "Close cart"}
             onClick={() => setIsOpen(false)}
           />
-          <aside className="absolute right-0 top-0 flex h-full w-[92%] max-w-[26rem] flex-col border-l-[0.5px] border-white bg-white p-6 shadow-2xl dark:bg-stone-950">
+          <aside className="absolute right-0 top-0 flex h-full w-[92%] max-w-[26rem] flex-col border-l-[0.5px] border-white bg-white px-6 pb-6 pt-4 shadow-2xl dark:bg-stone-950">
             <div className="flex items-center justify-between gap-4">
               <h2 className={`${eurostileExtended.className} text-sm font-bold uppercase leading-none tracking-[0.08em] text-stone-950 dark:text-stone-50 sm:text-lg`}>
-                Cart
+                {content?.title ?? "Cart"}
               </h2>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
                 className="inline-flex h-10 w-10 items-center justify-center transition-opacity hover:opacity-60"
-                aria-label="Close cart"
+                aria-label={content?.closeLabel ?? "Close cart"}
               >
                 <Image
                   src="/icons/close.svg"
@@ -252,6 +255,7 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
                     <CartItem
                       key={item.id}
                       item={item}
+                      removeLabel={content?.removeLabel ?? "Remove"}
                       onDecrease={() => updateQuantity(item.id, item.quantity - 1)}
                       onIncrease={() => updateQuantity(item.id, item.quantity + 1)}
                       onRemove={() => removeItem(item.id)}
@@ -260,11 +264,11 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
                 </ul>
                 <div className="border-t border-stone-200 pt-6 dark:border-stone-800">
                   <div className={`${eurostileExtended.className} flex items-center justify-between text-base font-bold uppercase text-stone-950 dark:text-stone-50`}>
-                    <span>Subtotal</span>
+                    <span>{content?.subtotalLabel ?? "Subtotal"}</span>
                     <span>${subtotal.toLocaleString("en-US")}</span>
                   </div>
                   <p className="mt-3 text-sm leading-6 text-stone-500 dark:text-stone-400">
-                    Taxes and shipping are calculated securely by Square.
+                    {content?.checkoutNote ?? "Taxes and shipping are calculated securely by Square."}
                   </p>
                   {checkoutError ? (
                     <p className="mt-3 text-sm text-red-700 dark:text-red-400" role="alert">
@@ -286,14 +290,14 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
                       <rect x="2.5" y="2.5" width="19" height="19" rx="4" stroke="currentColor" strokeWidth="2.5" />
                       <rect x="8.25" y="8.25" width="7.5" height="7.5" rx="1" stroke="currentColor" strokeWidth="2.5" />
                     </svg>
-                    {isCheckingOut ? "Opening Square…" : "Checkout with Square"}
+                    {isCheckingOut ? (content?.checkoutLoadingLabel ?? "Opening Square…") : (content?.checkoutLabel ?? "Checkout with Square")}
                   </Button>
                 </div>
               </>
             ) : (
               <div className="flex flex-1 flex-col items-center justify-center text-center">
                 <Image
-                  src="/images/planar.png"
+                  src={content?.emptyImageUrl ?? "/images/planar.png"}
                   alt=""
                   width={5712}
                   height={4284}
@@ -301,17 +305,17 @@ export function CartDrawer({ onDarkBackground = false }: CartDrawerProps) {
                   aria-hidden="true"
                 />
                 <p className={`${eurostileExtended.className} text-lg font-bold uppercase text-stone-950 dark:text-stone-50`}>
-                  Your cart is empty
+                  {content?.emptyHeading ?? "Your cart is empty"}
                 </p>
                 <p className={`${eurostileRegular.className} mt-3 text-base leading-6 text-stone-500 dark:text-stone-400`}>
-                  Add a surfboard to begin your order.
+                  {content?.emptyDescription ?? "Add a surfboard to begin your order."}
                 </p>
                 <Button
-                  href="/surfboards"
+                  href={safeNavigationHref(content?.browseHref ?? "/surfboards")}
                   className={`${eurostileExtended.className} mt-6 font-bold`}
                   onClick={() => setIsOpen(false)}
                 >
-                  View Boards
+                  {content?.browseLabel ?? "View Boards"}
                 </Button>
               </div>
             )}

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { AdminContentRuntime } from "@/components/admin/AdminContentRuntime";
 import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -42,9 +41,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className="dark h-full antialiased"
     >
       <body className="min-h-full bg-stone-50 text-stone-950 dark:bg-black dark:text-stone-50">
-        <AdminContentRuntime />
         <div className="flex min-h-screen flex-col">
-          <Header />
+          <SiteHeader />
           <main className="flex-1">{children}</main>
           <Footer />
         </div>

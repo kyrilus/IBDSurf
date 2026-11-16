@@ -5,21 +5,21 @@ import { eurostileExtended } from "@/lib/fonts";
 type CustomBoardCardProps = {
   transparent?: boolean;
   compactTitle?: boolean;
-  scratchTitle?: boolean;
+  interactiveEffects?: boolean;
   brightenOnHover?: boolean;
 };
 
 export function CustomBoardCard({
   transparent = false,
   compactTitle = false,
-  scratchTitle = false,
+  interactiveEffects = false,
   brightenOnHover,
 }: CustomBoardCardProps) {
-  const shouldBrightenOnHover = brightenOnHover ?? scratchTitle;
+  const shouldBrightenOnHover = brightenOnHover ?? interactiveEffects;
   return (
     <article
       className={`group overflow-hidden transition-colors duration-300 ${
-        scratchTitle ? "rounded-none" : "rounded-[2rem]"
+        interactiveEffects ? "rounded-none" : "rounded-[2rem]"
       } ${
         shouldBrightenOnHover ? "hover:bg-white/70 dark:hover:bg-white/[0.025]" : ""
       } ${
@@ -41,7 +41,7 @@ export function CustomBoardCard({
           </div>
         </div>
         <div className="px-6 pb-6 pt-1 text-center">
-          <h3 className={`${eurostileExtended.className} ${compactTitle ? "text-2xl sm:text-3xl" : "text-4xl"} ${scratchTitle ? "scratch-title" : ""} mx-auto w-fit font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
+          <h3 className={`${eurostileExtended.className} ${compactTitle ? "text-2xl sm:text-3xl" : "text-4xl"} mx-auto w-fit font-bold uppercase leading-[0.95] text-stone-800 dark:text-stone-200`}>
             <span className="block">Custom</span>
             <span className="block">Board</span>
           </h3>

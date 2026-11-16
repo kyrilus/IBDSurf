@@ -1,0 +1,85 @@
+[
+  {
+    "_id": "drafts.homePage",
+    "_type": "homePage",
+    "title": "Ian Blackmore Designs",
+    "catalogHeading": "SURFBOARDS"
+  },
+  {
+    "_id": "drafts.aboutPage",
+    "_type": "aboutPage",
+    "title": "ABOUT US",
+    "eyebrow": "Ian Blackmore Designs",
+    "heading": "Built Around Feel",
+    "body": [
+      {
+        "_type": "block",
+        "_key": "paragraph0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "text0",
+            "text": "Placeholder copy for Ian's story. Use this space to introduce his background, the path that led him to shaping surfboards, and the ideas behind Ian Blackmore Designs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "paragraph1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "text1",
+            "text": "Placeholder copy for the shaping philosophy. This section can describe how each board begins with the surfer, the waves they ride, and the feeling they want under their feet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "paragraph2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "text2",
+            "text": "Placeholder copy for materials, process, and craft. Add details about where the boards are shaped, how designs are refined, and what makes an IBD board distinct.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "drafts.contactPage",
+    "_type": "contactPage",
+    "title": "CONTACT IBD",
+    "eyebrow": "Get In Touch",
+    "heading": "Start A Conversation",
+    "body": [
+      {
+        "_type": "block",
+        "_key": "paragraph0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "text0",
+            "text": "Placeholder copy for general questions, available boards, collaborations, or anything else related to Ian Blackmore Designs.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "email": "ian@ibdesigns.us",
+    "phone": "Phone Placeholder",
+    "location": "Location Placeholder"
+  }
+]

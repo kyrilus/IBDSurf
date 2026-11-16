@@ -1,0 +1,1734 @@
+[
+  {
+    "name": "homePage",
+    "type": "document",
+    "title": "Home",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "hidden": true,
+        "group": "general"
+      },
+      {
+        "name": "catalogHeading",
+        "type": "string",
+        "initialValue": "Surfboards",
+        "group": "general",
+        "title": "Page Heading",
+        "description": "The main heading above the homepage board collection."
+      },
+      {
+        "name": "pageBackground",
+        "title": "Page Background",
+        "hidden": true,
+        "type": "color",
+        "description": "Changes the background color of this page.",
+        "options": {
+          "disableAlpha": true,
+          "colorList": [
+            "#0c0a09",
+            "#000000",
+            "#1c1917",
+            "#fafafa",
+            "#ffffff"
+          ]
+        },
+        "group": "general"
+      },
+      {
+        "name": "image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Image Description",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.required(); }"
+            },
+            "description": "A description kept with this background image in the CMS. The website treats the background as decorative."
+          }
+        ],
+        "title": "Page Background Image",
+        "description": "An image behind this page. Leave empty to keep the original page background.",
+        "group": "general"
+      },
+      {
+        "name": "seo",
+        "title": "Search Results (SEO)",
+        "type": "object",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(60).warning(); }"
+            },
+            "title": "SEO Title",
+            "description": "The browser-tab and search-result title. Leave empty to keep the current default."
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "rows": 3,
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(160).warning(); }"
+            },
+            "title": "SEO Description",
+            "description": "A short summary for search results. Leave empty to keep the current default."
+          }
+        ],
+        "group": "general",
+        "description": "Browser-tab and search-result text. Empty fields keep the current website defaults.",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      },
+      {
+        "name": "heroLogo",
+        "title": "Hero Logo",
+        "type": "image",
+        "description": "The large logo above the homepage board collection. Use a transparent image. Leave empty to keep the original IBD logo.",
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative Text",
+            "type": "string",
+            "initialValue": "Ian Blackmore Designs",
+            "description": "A short description for people using screen readers. Describe the image rather than its filename."
+          }
+        ],
+        "group": "hero"
+      },
+      {
+        "name": "showCustomBoard",
+        "title": "Show Custom Board Card",
+        "type": "boolean",
+        "initialValue": true,
+        "description": "Show the custom-order card alongside the boards on the homepage.",
+        "group": "boards"
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Home' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "general",
+        "title": "General",
+        "default": true
+      },
+      {
+        "name": "hero",
+        "title": "Hero",
+        "default": false
+      },
+      {
+        "name": "boards",
+        "title": "Board Collection",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": []
+  },
+  {
+    "name": "aboutPage",
+    "type": "document",
+    "title": "About",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "general",
+        "title": "Page Heading",
+        "description": "The main heading displayed at the top of this page."
+      },
+      {
+        "name": "pageBackground",
+        "title": "Page Background",
+        "hidden": true,
+        "type": "color",
+        "description": "Changes the background color of this page.",
+        "options": {
+          "disableAlpha": true,
+          "colorList": [
+            "#0c0a09",
+            "#000000",
+            "#1c1917",
+            "#fafafa",
+            "#ffffff"
+          ]
+        },
+        "group": "general"
+      },
+      {
+        "name": "seo",
+        "title": "Search Results (SEO)",
+        "type": "object",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(60).warning(); }"
+            },
+            "title": "SEO Title",
+            "description": "The browser-tab and search-result title. Leave empty to keep the current default."
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "rows": 3,
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(160).warning(); }"
+            },
+            "title": "SEO Description",
+            "description": "A short summary for search results. Leave empty to keep the current default."
+          }
+        ],
+        "group": "general",
+        "description": "Browser-tab and search-result text. Empty fields keep the current website defaults.",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      },
+      {
+        "name": "eyebrow",
+        "type": "string",
+        "group": "story",
+        "title": "Introductory Text",
+        "description": "The small line above the story heading, such as the company name."
+      },
+      {
+        "name": "heading",
+        "type": "string",
+        "group": "story",
+        "title": "Story Heading",
+        "description": "The heading beside the About page image."
+      },
+      {
+        "name": "body",
+        "type": "array",
+        "of": [
+          {
+            "type": "block"
+          }
+        ],
+        "group": "story",
+        "title": "Story Text",
+        "description": "The paragraphs and formatted text below the story heading."
+      },
+      {
+        "name": "image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative Text",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.required(); }"
+            },
+            "description": "A short description for people using screen readers. Describe the image rather than its filename."
+          }
+        ],
+        "group": "story",
+        "title": "Story Image",
+        "description": "The image beside the story. Use crop and hotspot controls to choose its focus."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'About' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "general",
+        "title": "General",
+        "default": true
+      },
+      {
+        "name": "story",
+        "title": "Story & Content",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": []
+  },
+  {
+    "name": "contactPage",
+    "type": "document",
+    "title": "Contact",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "general",
+        "title": "Page Heading",
+        "description": "The main heading displayed at the top of this page."
+      },
+      {
+        "name": "pageBackground",
+        "title": "Page Background",
+        "hidden": true,
+        "type": "color",
+        "description": "Changes the background color of this page.",
+        "options": {
+          "disableAlpha": true,
+          "colorList": [
+            "#0c0a09",
+            "#000000",
+            "#1c1917",
+            "#fafafa",
+            "#ffffff"
+          ]
+        },
+        "group": "general"
+      },
+      {
+        "name": "seo",
+        "title": "Search Results (SEO)",
+        "type": "object",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(60).warning(); }"
+            },
+            "title": "SEO Title",
+            "description": "The browser-tab and search-result title. Leave empty to keep the current default."
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "rows": 3,
+            "validation": {
+              "functionSource": "function (rule) { return rule.max(160).warning(); }"
+            },
+            "title": "SEO Description",
+            "description": "A short summary for search results. Leave empty to keep the current default."
+          }
+        ],
+        "group": "general",
+        "description": "Browser-tab and search-result text. Empty fields keep the current website defaults.",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      },
+      {
+        "name": "showEyebrow",
+        "title": "Show Introductory Text",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "content",
+        "description": "Display the small introductory line above the contact-section heading."
+      },
+      {
+        "name": "eyebrow",
+        "type": "string",
+        "group": "content",
+        "title": "Introductory Text",
+        "description": "The small line above the contact-section heading."
+      },
+      {
+        "name": "showHeading",
+        "title": "Show Content Heading",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "content",
+        "description": "Display the heading beside the Contact page image. This does not hide the page heading at the top."
+      },
+      {
+        "name": "heading",
+        "type": "string",
+        "group": "content",
+        "title": "Content Heading",
+        "description": "The heading above the contact message and contact details."
+      },
+      {
+        "name": "body",
+        "type": "array",
+        "of": [
+          {
+            "type": "block"
+          }
+        ],
+        "group": "content",
+        "title": "Contact Message",
+        "description": "The paragraphs below the contact-section heading."
+      },
+      {
+        "name": "image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative Text",
+            "type": "string",
+            "validation": {
+              "functionSource": "function (rule) { return rule.required(); }"
+            },
+            "description": "A short description for people using screen readers. Describe the image rather than its filename."
+          }
+        ],
+        "group": "content",
+        "title": "Contact Image",
+        "description": "The image beside the contact message and contact details."
+      },
+      {
+        "name": "showEmail",
+        "title": "Show Email",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "contact",
+        "description": "Display the email address in the contact details."
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "validation": {
+          "functionSource": "function (rule) { return rule.email(); }"
+        },
+        "group": "contact",
+        "title": "Email Address",
+        "description": "The email address visitors can click to open their email app."
+      },
+      {
+        "name": "showPhone",
+        "title": "Show Phone",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "contact",
+        "description": "Display the phone number in the contact details."
+      },
+      {
+        "name": "phone",
+        "type": "string",
+        "group": "contact",
+        "title": "Phone Number",
+        "description": "The phone number displayed on this page."
+      },
+      {
+        "name": "showAddress",
+        "title": "Show Address",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "contact",
+        "description": "Display the address in the contact details."
+      },
+      {
+        "name": "location",
+        "title": "Address",
+        "type": "text",
+        "rows": 2,
+        "group": "contact",
+        "description": "The address displayed on this page."
+      },
+      {
+        "name": "showInstagram",
+        "title": "Show Instagram",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "social",
+        "description": "Display the Instagram link in the contact details."
+      },
+      {
+        "name": "instagramUrl",
+        "title": "Instagram Link",
+        "type": "url",
+        "validation": {
+          "functionSource": "function (rule) { return rule.uri({ scheme: ['https'] }); }"
+        },
+        "group": "social",
+        "description": "The Instagram profile visitors open when they click Instagram."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Contact' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "general",
+        "title": "General",
+        "default": true
+      },
+      {
+        "name": "content",
+        "title": "Page Content",
+        "default": false
+      },
+      {
+        "name": "contact",
+        "title": "Contact Information",
+        "default": false
+      },
+      {
+        "name": "social",
+        "title": "Social Links",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": []
+  },
+  {
+    "name": "footer",
+    "title": "Footer",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "brandLogo",
+        "title": "Brand Logo",
+        "type": "image",
+        "description": "The logo on the left side of the footer. Use a transparent, light-colored image for the dark background.",
+        "fields": [
+          {
+            "name": "alt",
+            "title": "Alternative Text",
+            "type": "string",
+            "initialValue": "Ian Blackmore Designs",
+            "description": "A short description for people using screen readers. Describe the image rather than its filename."
+          }
+        ],
+        "group": "branding"
+      },
+      {
+        "name": "brandName",
+        "type": "string",
+        "initialValue": "IAN BLACKMORE DESIGNS",
+        "group": "branding",
+        "title": "Company Name",
+        "description": "The company name beside the footer logo."
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "rows": 3,
+        "group": "branding",
+        "title": "Company Description",
+        "description": "The short description below the company name."
+      },
+      {
+        "name": "copyrightName",
+        "type": "string",
+        "description": "The name after the copyright symbol and year. The current year is added automatically.",
+        "group": "branding",
+        "title": "Copyright Name"
+      },
+      {
+        "name": "shopHeading",
+        "title": "Footer Heading 1",
+        "type": "string",
+        "initialValue": "Shop",
+        "group": "links",
+        "description": "The heading above the first column of footer links."
+      },
+      {
+        "name": "shopLinks",
+        "type": "array",
+        "of": [
+          {
+            "name": "footerLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Link Text",
+                "description": "The text visitors see for this link."
+              },
+              {
+                "name": "href",
+                "title": "Link Destination",
+                "type": "url",
+                "description": "The page or website visitors open when they click this link. Use /contact for a site page or a full https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http', 'mailto', 'tel'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ],
+        "group": "links",
+        "title": "Footer Links 1",
+        "description": "Links under Footer Heading 1. Drag to change their order."
+      },
+      {
+        "name": "brandHeading",
+        "title": "Footer Heading 2",
+        "type": "string",
+        "initialValue": "Brand",
+        "group": "links",
+        "description": "The heading above the second column of footer links."
+      },
+      {
+        "name": "brandLinks",
+        "type": "array",
+        "of": [
+          {
+            "name": "footerLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Link Text",
+                "description": "The text visitors see for this link."
+              },
+              {
+                "name": "href",
+                "title": "Link Destination",
+                "type": "url",
+                "description": "The page or website visitors open when they click this link. Use /contact for a site page or a full https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http', 'mailto', 'tel'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ],
+        "group": "links",
+        "title": "Footer Links 2",
+        "description": "Links under Footer Heading 2. Drag to change their order."
+      },
+      {
+        "name": "legalLinks",
+        "type": "array",
+        "of": [
+          {
+            "name": "footerLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Link Text",
+                "description": "The text visitors see for this link."
+              },
+              {
+                "name": "href",
+                "title": "Link Destination",
+                "type": "url",
+                "description": "The page or website visitors open when they click this link. Use /contact for a site page or a full https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http', 'mailto', 'tel'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ],
+        "group": "links",
+        "title": "Legal & Information Links",
+        "description": "The policy and information links in the bottom row of the footer. Drag to change their order."
+      },
+      {
+        "name": "followHeading",
+        "title": "Footer Heading 3",
+        "type": "string",
+        "initialValue": "Follow",
+        "group": "social",
+        "description": "The heading above the Instagram icon."
+      },
+      {
+        "name": "instagramUrl",
+        "title": "Instagram Link",
+        "type": "url",
+        "validation": {
+          "functionSource": "function (rule) { return rule.uri({ scheme: ['https'] }); }"
+        },
+        "group": "social",
+        "description": "The Instagram profile visitors open from the footer icon."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Footer' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "branding",
+        "title": "Branding",
+        "default": true
+      },
+      {
+        "name": "links",
+        "title": "Navigation Links",
+        "default": false
+      },
+      {
+        "name": "social",
+        "title": "Social Links",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": []
+  },
+  {
+    "name": "header",
+    "title": "Header",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "brandName",
+        "type": "string",
+        "initialValue": "IAN BLACKMORE DESIGNS",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Desktop Company Name Header",
+        "group": "branding",
+        "description": "Company name shown at the top of the homepage on wider screens before the logo appears on scroll."
+      },
+      {
+        "name": "mobileLineOne",
+        "type": "string",
+        "initialValue": "IAN BLACKMORE",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Mobile Company Name Header - Line 1",
+        "group": "branding",
+        "description": "First line of the company name on smaller screens at the top of the homepage."
+      },
+      {
+        "name": "mobileLineTwo",
+        "type": "string",
+        "initialValue": "DESIGNS",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Mobile Company Name Header - Line 2",
+        "group": "branding",
+        "description": "Second line of the company name on smaller screens at the top of the homepage."
+      },
+      {
+        "name": "homeLabel",
+        "type": "string",
+        "initialValue": "Ian Blackmore Designs home",
+        "hidden": true,
+        "group": "branding"
+      },
+      {
+        "name": "lightLogo",
+        "title": "Header & Menu Logo",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "group": "branding",
+        "description": "The logo used in the header and navigation-menu footer against dark backgrounds. Use a transparent, light-colored logo."
+      },
+      {
+        "name": "darkLogo",
+        "title": "Logo for light backgrounds",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "hidden": true,
+        "group": "branding",
+        "description": "Choose an image from the media library or upload a replacement. Existing images remain selected until changed."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Header' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "branding",
+        "title": "Branding",
+        "default": true
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": []
+  },
+  {
+    "name": "menu",
+    "title": "Menu",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "initialValue": "Site navigation",
+        "hidden": true,
+        "group": "general"
+      },
+      {
+        "name": "heading",
+        "title": "Menu Heading",
+        "type": "string",
+        "initialValue": "Menu",
+        "group": "general",
+        "description": "The heading at the top right of the slide-out navigation menu."
+      },
+      {
+        "name": "showHeading",
+        "title": "Show Menu Heading",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "general",
+        "description": "Turn this on to display the heading in the website’s navigation menu."
+      },
+      {
+        "name": "openLabel",
+        "type": "string",
+        "initialValue": "Open navigation menu",
+        "hidden": true,
+        "group": "general"
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "initialValue": "Close navigation menu",
+        "hidden": true,
+        "group": "general"
+      },
+      {
+        "name": "links",
+        "type": "array",
+        "of": [
+          {
+            "name": "navigationLink",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "initialValue": "New link",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Link Text",
+                "description": "The text visitors see for this link."
+              },
+              {
+                "name": "href",
+                "title": "Link Destination",
+                "type": "url",
+                "description": "The page or website visitors open when they click this link. Use /contact for a site page or a full https:// address.",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http'] }); }"
+                }
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "href"
+              }
+            }
+          }
+        ],
+        "group": "links",
+        "title": "Navigation Links",
+        "description": "Drag to reorder the links in the slide-out menu. Add, rename, or remove links here."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Menu' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "general",
+        "title": "General",
+        "default": true
+      },
+      {
+        "name": "links",
+        "title": "Navigation Links",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": []
+  },
+  {
+    "name": "shoppingCart",
+    "title": "Shopping Cart",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "description": "Customer-facing cart text and artwork. Products, prices, inventory, and payments are managed by Square.",
+    "fields": [
+      {
+        "name": "title",
+        "title": "Cart Heading",
+        "type": "string",
+        "initialValue": "Cart",
+        "description": "The heading at the top of the cart slide-out.",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "general"
+      },
+      {
+        "name": "openLabel",
+        "type": "string",
+        "initialValue": "Open cart",
+        "hidden": true,
+        "group": "general"
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "initialValue": "Close cart",
+        "hidden": true,
+        "group": "general"
+      },
+      {
+        "name": "emptyHeading",
+        "type": "string",
+        "initialValue": "Your cart is empty",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "content",
+        "title": "Empty Cart Heading",
+        "description": "The heading displayed when the cart contains no boards."
+      },
+      {
+        "name": "emptyDescription",
+        "type": "string",
+        "initialValue": "Add a surfboard to begin your order.",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "content",
+        "title": "Empty Cart Message",
+        "description": "The explanatory text beneath the empty-cart heading."
+      },
+      {
+        "name": "emptyImage",
+        "title": "Empty Cart Illustration",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "group": "content",
+        "description": "The artwork above the empty-cart message. Leave empty to use the original illustration."
+      },
+      {
+        "name": "subtotalLabel",
+        "type": "string",
+        "initialValue": "Subtotal",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "content",
+        "title": "Subtotal Label",
+        "description": "The label beside the calculated cart subtotal."
+      },
+      {
+        "name": "removeLabel",
+        "type": "string",
+        "initialValue": "Remove",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Remove Item Label",
+        "group": "content",
+        "description": "The text on each cart item’s remove button."
+      },
+      {
+        "name": "browseLabel",
+        "type": "string",
+        "initialValue": "View Boards",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Empty Cart Button Text",
+        "group": "buttons",
+        "description": "The button text below the empty-cart message."
+      },
+      {
+        "name": "browseHref",
+        "title": "Empty Cart Button Link",
+        "type": "url",
+        "initialValue": "/surfboards",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required().uri({ allowRelative: true, scheme: ['https', 'http'] }); }"
+        },
+        "group": "buttons",
+        "description": "The page or website visitors open from the empty-cart button."
+      },
+      {
+        "name": "checkoutNote",
+        "type": "string",
+        "initialValue": "Taxes and shipping are calculated securely by Square.",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "buttons",
+        "title": "Checkout Note",
+        "description": "The message above the checkout button, such as how taxes and shipping are calculated."
+      },
+      {
+        "name": "checkoutLabel",
+        "type": "string",
+        "initialValue": "Checkout with Square",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Checkout Button Text",
+        "group": "buttons",
+        "description": "The text on the button that starts Square checkout."
+      },
+      {
+        "name": "checkoutLoadingLabel",
+        "type": "string",
+        "initialValue": "Opening Square…",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "title": "Checkout Button Loading Text",
+        "group": "buttons",
+        "description": "The button text shown while the website prepares Square checkout."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Shopping Cart' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "general",
+        "title": "General",
+        "default": true
+      },
+      {
+        "name": "content",
+        "title": "Cart Content",
+        "default": false
+      },
+      {
+        "name": "buttons",
+        "title": "Buttons & Checkout",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": []
+  },
+  {
+    "name": "boardsPage",
+    "title": "Boards",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fields": [
+      {
+        "name": "heading",
+        "type": "string",
+        "initialValue": "SURFBOARDS",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required(); }"
+        },
+        "group": "general",
+        "title": "Page Heading",
+        "description": "The main heading displayed at the top of this page."
+      },
+      {
+        "name": "pageBackground",
+        "title": "Page Background",
+        "hidden": true,
+        "type": "color",
+        "description": "Changes the background color of this page.",
+        "options": {
+          "disableAlpha": true,
+          "colorList": [
+            "#0c0a09",
+            "#000000",
+            "#1c1917",
+            "#fafafa",
+            "#ffffff"
+          ]
+        },
+        "group": "general"
+      },
+      {
+        "name": "backgroundImage",
+        "title": "Page Background Image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "description": "An image behind this page. Leave empty to keep the original page background.",
+        "group": "general"
+      },
+      {
+        "name": "seoTitle",
+        "title": "SEO Title",
+        "type": "string",
+        "initialValue": "Surfboards",
+        "group": "general",
+        "description": "The browser-tab and search-result title. Leave empty to use Surfboards.",
+        "fieldset": "seo"
+      },
+      {
+        "name": "seoDescription",
+        "title": "SEO Description",
+        "type": "text",
+        "rows": 3,
+        "group": "general",
+        "description": "A short summary for search results. Leave empty to keep the current default.",
+        "fieldset": "seo"
+      },
+      {
+        "name": "filterLabel",
+        "type": "string",
+        "initialValue": "Filter",
+        "group": "collection",
+        "title": "Filter Label",
+        "description": "The label beside the board-type filter buttons."
+      },
+      {
+        "name": "showCategoryFilters",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "collection",
+        "title": "Show Board-Type Filters",
+        "description": "Display the buttons visitors use to choose All, Available, or Custom boards."
+      },
+      {
+        "name": "categoryFilters",
+        "type": "array",
+        "description": "Drag to reorder the filter buttons. Rename or remove buttons here; Square still supplies board availability.",
+        "of": [
+          {
+            "name": "categoryFilter",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Button Text",
+                "description": "Text visitors see on this filter button."
+              },
+              {
+                "name": "mode",
+                "type": "string",
+                "options": {
+                  "list": [
+                    {
+                      "title": "All boards",
+                      "value": "all"
+                    },
+                    {
+                      "title": "Available in Square",
+                      "value": "available"
+                    },
+                    {
+                      "title": "Custom orders",
+                      "value": "custom"
+                    }
+                  ]
+                },
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Boards to Show",
+                "description": "Choose all boards, boards available in Square, or the custom-order card."
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "mode"
+              }
+            }
+          }
+        ],
+        "group": "collection",
+        "title": "Board-Type Filters"
+      },
+      {
+        "name": "showPriceFilter",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "collection",
+        "title": "Show Price Filter",
+        "description": "Display the price-range dropdown above the board collection."
+      },
+      {
+        "name": "priceLabel",
+        "type": "string",
+        "initialValue": "Price",
+        "group": "collection",
+        "title": "Price Filter Label",
+        "description": "The label beside the price dropdown."
+      },
+      {
+        "name": "anyPriceLabel",
+        "type": "string",
+        "initialValue": "Any Price",
+        "group": "collection",
+        "title": "All Prices Label",
+        "description": "The dropdown option that shows every price."
+      },
+      {
+        "name": "priceRanges",
+        "type": "array",
+        "description": "The choices in the price dropdown. Minimum prices are included; maximum prices are excluded. Prices use the catalog currency (currently USD).",
+        "of": [
+          {
+            "name": "priceRange",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Option Text",
+                "description": "Text visitors see for this price range."
+              },
+              {
+                "name": "minPrice",
+                "type": "number",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.min(0); }"
+                },
+                "title": "Minimum Price",
+                "description": "Include boards at or above this price. Leave empty for no lower limit."
+              },
+              {
+                "name": "maxPrice",
+                "type": "number",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.min(0); }"
+                },
+                "title": "Maximum Price",
+                "description": "Include boards below this price. Leave empty for no upper limit."
+              }
+            ],
+            "validation": {
+              "functionSource": "function (rule) { return rule.custom(function (value) {\n                        if (!value)\n                            return true;\n                        var _a = value, minPrice = _a.minPrice, maxPrice = _a.maxPrice;\n                        return minPrice != null && maxPrice != null && maxPrice <= minPrice ? 'Maximum must be greater than minimum.' : true;\n                    }); }"
+            },
+            "preview": {
+              "select": {
+                "title": "label"
+              }
+            }
+          }
+        ],
+        "group": "collection",
+        "title": "Price Ranges"
+      },
+      {
+        "name": "showCustomBoard",
+        "title": "Show Custom Board Card",
+        "type": "boolean",
+        "initialValue": true,
+        "group": "collection",
+        "description": "Display the custom-order card in the board collection when no price range is selected."
+      },
+      {
+        "name": "emptyMessage",
+        "type": "string",
+        "initialValue": "No boards match this filter right now.",
+        "group": "collection",
+        "title": "No Results Message",
+        "description": "Shown when no boards match the selected filters."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Boards' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "general",
+        "title": "General",
+        "default": true
+      },
+      {
+        "name": "collection",
+        "title": "Board Collection",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ],
+    "fieldsets": [
+      {
+        "name": "seo",
+        "title": "Search Results (SEO)",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "customPage",
+    "title": "Custom",
+    "type": "document",
+    "icon": "__DOCUMENT_ICON__",
+    "fieldsets": [
+      {
+        "name": "seo",
+        "title": "Search Results (SEO)",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      }
+    ],
+    "fields": [
+      {
+        "name": "heading",
+        "title": "Page Heading",
+        "type": "string",
+        "initialValue": "CUSTOM BOARD ORDER",
+        "group": "general",
+        "description": "The main heading displayed at the top of this page."
+      },
+      {
+        "name": "pageBackground",
+        "title": "Page Background",
+        "hidden": true,
+        "type": "color",
+        "description": "Changes the background color of this page.",
+        "options": {
+          "disableAlpha": true,
+          "colorList": [
+            "#0c0a09",
+            "#000000",
+            "#1c1917",
+            "#fafafa",
+            "#ffffff"
+          ]
+        },
+        "group": "general"
+      },
+      {
+        "name": "backgroundImage",
+        "title": "Page Background Image",
+        "type": "image",
+        "options": {
+          "hotspot": true
+        },
+        "group": "general",
+        "description": "An image behind this page. Leave empty to keep the original page background."
+      },
+      {
+        "name": "seoTitle",
+        "fieldset": "seo",
+        "title": "SEO Title",
+        "type": "string",
+        "description": "The browser-tab and search-result title. Leave empty to use the page heading.",
+        "group": "general"
+      },
+      {
+        "name": "seoDescription",
+        "fieldset": "seo",
+        "title": "SEO Description",
+        "type": "text",
+        "rows": 3,
+        "group": "general",
+        "description": "A short summary for search results. Leave empty to keep the current default."
+      },
+      {
+        "name": "boardTypes",
+        "hidden": true,
+        "title": "Board type options",
+        "type": "array",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "validation": {
+          "functionSource": "function (rule) { return rule.min(1).unique(); }"
+        },
+        "group": "general"
+      },
+      {
+        "name": "experienceLevels",
+        "hidden": true,
+        "title": "Surfing experience options",
+        "type": "array",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "validation": {
+          "functionSource": "function (rule) { return rule.min(1).unique(); }"
+        },
+        "group": "general"
+      },
+      {
+        "name": "formFields",
+        "title": "Form Fields",
+        "type": "array",
+        "description": "Add, remove, or drag fields into order. Fields use two columns on larger screens; Full Width spans both. An empty list hides all inputs.",
+        "of": [
+          {
+            "name": "customFormField",
+            "title": "Form field",
+            "type": "object",
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "title": "Field Label",
+                "description": "Text displayed above this form input and beside its answer in the inquiry email."
+              },
+              {
+                "name": "inputType",
+                "title": "Field Type",
+                "type": "string",
+                "initialValue": "text",
+                "options": {
+                  "list": [
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "Email",
+                      "value": "email"
+                    },
+                    {
+                      "title": "Phone",
+                      "value": "tel"
+                    },
+                    {
+                      "title": "Number",
+                      "value": "number"
+                    },
+                    {
+                      "title": "Long text",
+                      "value": "textarea"
+                    },
+                    {
+                      "title": "Dropdown",
+                      "value": "select"
+                    }
+                  ]
+                },
+                "validation": {
+                  "functionSource": "function (rule) { return rule.required(); }"
+                },
+                "description": "Choose text, email, phone, number, long text, or a dropdown."
+              },
+              {
+                "name": "placeholder",
+                "type": "string",
+                "title": "Placeholder Text",
+                "description": "An example or prompt shown while this input is empty."
+              },
+              {
+                "name": "required",
+                "title": "Required Field",
+                "type": "boolean",
+                "initialValue": false,
+                "description": "Customers must complete this field before opening their inquiry email."
+              },
+              {
+                "name": "fullWidth",
+                "title": "Full Width",
+                "type": "boolean",
+                "initialValue": false,
+                "description": "Make this field span both form columns. Other fields use one column."
+              },
+              {
+                "name": "options",
+                "title": "Dropdown Choices",
+                "type": "array",
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "hidden": {
+                  "functionSource": "function (_a) {\n                                var parent = _a.parent;\n                                return (parent === null || parent === void 0 ? void 0 : parent.inputType) !== 'select';\n                            }"
+                },
+                "validation": {
+                  "functionSource": "function (rule) { return rule.custom(function (value, context) { var _a; return ((_a = context.parent) === null || _a === void 0 ? void 0 : _a.inputType) === 'select' && (!Array.isArray(value) || value.length === 0) ? 'Add at least one choice for a dropdown.' : true; }); }"
+                },
+                "description": "Add or reorder the choices customers can select in this dropdown."
+              }
+            ],
+            "preview": {
+              "select": {
+                "title": "label",
+                "subtitle": "inputType"
+              }
+            }
+          }
+        ],
+        "group": "requestForm"
+      },
+      {
+        "name": "submitLabel",
+        "title": "Submit Button Text",
+        "type": "string",
+        "initialValue": "Submit Request",
+        "group": "requestForm",
+        "description": "Text on the button that opens the customer’s email app with the request ready to review and send."
+      },
+      {
+        "name": "submitNote",
+        "title": "Submit Button Note",
+        "type": "text",
+        "initialValue": "This opens your email app with the request filled in for you to review and send.",
+        "group": "requestForm",
+        "description": "The explanatory text immediately below the submit button."
+      },
+      {
+        "name": "contactEmail",
+        "type": "string",
+        "initialValue": "ian@ibdesigns.us",
+        "validation": {
+          "functionSource": "function (rule) { return rule.required().email(); }"
+        },
+        "group": "sideModal",
+        "title": "Contact Email",
+        "description": "Receives custom requests and appears in the contact panel beside the form."
+      },
+      {
+        "name": "formCopy",
+        "title": "Sidebar Text",
+        "type": "object",
+        "options": {
+          "collapsible": false
+        },
+        "fields": [
+          {
+            "name": "nameLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "emailLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "phoneLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "boardTypeLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "boardTypePlaceholder",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "dimensionsLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "dimensionsPlaceholder",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "experienceLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "experiencePlaceholder",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "detailsLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "detailsPlaceholder",
+            "hidden": true,
+            "type": "text"
+          },
+          {
+            "name": "submitLabel",
+            "hidden": true,
+            "type": "string"
+          },
+          {
+            "name": "submitNote",
+            "hidden": true,
+            "type": "text"
+          },
+          {
+            "name": "sidebarHeading",
+            "type": "string",
+            "title": "Sidebar Heading",
+            "description": "The heading above the direct-email contact details."
+          },
+          {
+            "name": "sidebarDescription",
+            "type": "text",
+            "title": "Sidebar Description",
+            "description": "The explanation below the contact-panel heading."
+          },
+          {
+            "name": "copyEmailLabel",
+            "title": "Copy Email Button Text",
+            "type": "string",
+            "description": "Text on the button that copies the contact email address."
+          },
+          {
+            "name": "emailButtonLabel",
+            "type": "string",
+            "title": "Email Button Text",
+            "description": "Text on the link that opens a new email to the contact address."
+          },
+          {
+            "name": "emailCopiedMessage",
+            "type": "string",
+            "title": "Email Copied Message",
+            "description": "Confirmation shown after the email address is copied."
+          }
+        ],
+        "group": "sideModal",
+        "description": "Text and buttons in the contact panel beside the form."
+      }
+    ],
+    "preview": {
+      "prepare": {
+        "functionSource": "function () { return ({ title: 'Custom' }); }"
+      }
+    },
+    "groups": [
+      {
+        "name": "general",
+        "title": "General",
+        "default": true
+      },
+      {
+        "name": "requestForm",
+        "title": "Custom Request Form",
+        "default": false
+      },
+      {
+        "name": "sideModal",
+        "title": "Side Modal",
+        "default": false
+      },
+      {
+        "name": "all-fields",
+        "title": "All Fields",
+        "hidden": true
+      }
+    ]
+  }
+]

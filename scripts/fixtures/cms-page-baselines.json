@@ -1,0 +1,111 @@
+{
+  "home": [
+    {
+      "htmlHash": "5657b6d1252de762d444ae58cb6326aada2a38cf6cab383cd50670c746d1e712",
+      "metadata": {}
+    },
+    {
+      "htmlHash": "5657b6d1252de762d444ae58cb6326aada2a38cf6cab383cd50670c746d1e712",
+      "metadata": {}
+    },
+    {
+      "htmlHash": "7e1c2782f2c7b0bfdf87dc0ffbc2d6ceddf53e304bf10d6a7e385d4f87d964f0",
+      "metadata": {
+        "title": "Saved SEO",
+        "description": "Saved description"
+      }
+    }
+  ],
+  "about": [
+    {
+      "htmlHash": "a7c5096d01eb7ddb5cef8dafb5c6b570c9c89f7fed7ccfb1bb5f21cfff3d1efd",
+      "metadata": {
+        "title": "About Us",
+        "description": "Learn about Ian Blackmore Designs and the shaping philosophy behind the boards."
+      }
+    },
+    {
+      "htmlHash": "a7c5096d01eb7ddb5cef8dafb5c6b570c9c89f7fed7ccfb1bb5f21cfff3d1efd",
+      "metadata": {
+        "title": "About Us",
+        "description": "Learn about Ian Blackmore Designs and the shaping philosophy behind the boards."
+      }
+    },
+    {
+      "htmlHash": "4d55e5ff9f8859d50c11ee215bfed6836d430643c55f73e5a0c24a3a2b2f99d4",
+      "metadata": {
+        "title": "Saved SEO",
+        "description": "Saved description"
+      }
+    }
+  ],
+  "contact": [
+    {
+      "htmlHash": "76c962390961326391792cb268e01769d94135722ae471e0eb3e535d0bd23e1d",
+      "metadata": {
+        "title": "Contact",
+        "description": "Contact Ian Blackmore Designs about custom surfboards, board availability, and future orders."
+      }
+    },
+    {
+      "htmlHash": "76c962390961326391792cb268e01769d94135722ae471e0eb3e535d0bd23e1d",
+      "metadata": {
+        "title": "Contact",
+        "description": "Contact Ian Blackmore Designs about custom surfboards, board availability, and future orders."
+      }
+    },
+    {
+      "htmlHash": "9aa6ec3dc5bf4acee80aae599b61bf83f6e93113e1543e8b82987c11e9a26648",
+      "metadata": {
+        "title": "Saved SEO",
+        "description": "Saved description"
+      }
+    }
+  ],
+  "boards": [
+    {
+      "htmlHash": "3c09db4fe355e33198234fe8cd7f309e528b25358465bf75b4b6d87a3e1d796b",
+      "metadata": {
+        "title": "Surfboards",
+        "description": "Browse Ian Blackmore Designs surfboards and custom board options."
+      }
+    },
+    {
+      "htmlHash": "3c09db4fe355e33198234fe8cd7f309e528b25358465bf75b4b6d87a3e1d796b",
+      "metadata": {
+        "title": "Surfboards",
+        "description": "Browse Ian Blackmore Designs surfboards and custom board options."
+      }
+    },
+    {
+      "htmlHash": "d4c2c367d524245dfb52ed8fcd072032a55edd4eea633ff00b6caffafccf0e0c",
+      "metadata": {
+        "title": "Flat SEO",
+        "description": "Flat description"
+      }
+    }
+  ],
+  "custom": [
+    {
+      "htmlHash": "654d2356b8ca6c4fe45d995b2ac49be79e304538f791631a0ab888179ae7da5c",
+      "metadata": {
+        "title": "Custom Surfboards",
+        "description": "Start a custom Ian Blackmore Designs surfboard inquiry shaped around your waves, style, and goals."
+      }
+    },
+    {
+      "htmlHash": "654d2356b8ca6c4fe45d995b2ac49be79e304538f791631a0ab888179ae7da5c",
+      "metadata": {
+        "title": "Custom Surfboards",
+        "description": "Start a custom Ian Blackmore Designs surfboard inquiry shaped around your waves, style, and goals."
+      }
+    },
+    {
+      "htmlHash": "e61be60769f026e5dc02ef075cb3b2b1e1732c30af1630925934bc9df111a100",
+      "metadata": {
+        "title": "Flat SEO",
+        "description": "Flat description"
+      }
+    }
+  ]
+}

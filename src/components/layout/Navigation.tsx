@@ -1,26 +1,26 @@
 "use client";
 
+import type { MENU_QUERY_RESULT } from "@/sanity/types";
+import { safeNavigationHref } from "@/lib/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { eurostileExtended } from "@/lib/fonts";
 
 const navigationItems = [
   { href: "/", label: "Home" },
-  { href: "/home-2", label: "Home 2" },
-  { href: "/home-3", label: "Home 3" },
-  { href: "/home-4", label: "Home 4" },
   { href: "/surfboards", label: "Boards" },
   { href: "/custom", label: "Custom" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
 ];
 
 type NavigationProps = {
+  content?: MENU_QUERY_RESULT;
   variant?: "inline" | "menu";
   onNavigate?: () => void;
 };
 
-export function Navigation({ variant = "inline", onNavigate }: NavigationProps) {
+export function Navigation({ variant = "inline", onNavigate, content }: NavigationProps) {
   const pathname = usePathname();
 
   return (
@@ -32,15 +32,16 @@ export function Navigation({ variant = "inline", onNavigate }: NavigationProps) 
           : "flex flex-wrap items-center justify-center gap-x-8 gap-y-3 lg:gap-x-10"
       }
     >
-      {navigationItems.map((item) => {
-        const isActive = item.href === "/"
+      {(content?.links ?? navigationItems).map((item) => {
+        const href = safeNavigationHref(item.href);
+        const isActive = href === "/"
           ? pathname === "/"
-          : pathname === item.href || pathname.startsWith(`${item.href}/`);
+          : pathname === href || pathname.startsWith(`${href}/`);
 
         return (
           <Link
-            key={item.href}
-            href={item.href}
+            key={"_key" in item ? item._key : href}
+            href={href}
             onClick={onNavigate}
             aria-current={isActive ? "page" : undefined}
             className={
